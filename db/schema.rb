@@ -19,18 +19,21 @@ ActiveRecord::Schema.define(version: 2019_02_20_121427) do
     t.string "name", null: false
     t.bigint "library_id"
     t.string "isbn", null: false
+    t.string "author", default: "", null: false
     t.text "description"
     t.string "cover_image"
     t.integer "number_of_pages", default: 0, null: false
-    t.integer "format"
+    t.integer "format", default: 0, null: false
     t.string "publisher"
     t.date "pub_date"
-    t.integer "language"
+    t.integer "language", null: false
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author"], name: "index_books_on_author"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
     t.index ["library_id"], name: "index_books_on_library_id"
+    t.index ["name"], name: "index_books_on_name"
   end
 
   create_table "books_categories", id: false, force: :cascade do |t|
@@ -69,7 +72,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_121427) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer "type"
+    t.integer "type", default: 0, null: false
     t.bigint "user_id"
     t.bigint "book_id"
     t.bigint "loan_id"
