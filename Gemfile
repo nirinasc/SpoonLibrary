@@ -52,6 +52,8 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
+
 
 
 group :development, :test do

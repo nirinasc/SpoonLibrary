@@ -7,7 +7,7 @@ class CreateLogs < ActiveRecord::Migration[5.2]
       t.references :loan, index: true
       t.datetime :date, null: false
       t.datetime :due_date
-      t.boolean :returned, defaullt: false
+      t.boolean :returned, default: false
 
       t.timestamps
     end

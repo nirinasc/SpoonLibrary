@@ -11,7 +11,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :authentication_keys => [:username]
   devise  :recoverable, :rememberable, :validatable
 
-  validates :email, uniqueness: true
-  validates :username, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9_]+\Z/ }
+  validates :role, presence: true, inclusion: { in: roles.keys}
+  validates :active, inclusion: { in: [true, false]} 
+
 
 end
