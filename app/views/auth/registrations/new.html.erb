@@ -1,0 +1,75 @@
+<div class="col-sm-6 col-xs-12 col-sm-offset-3">
+  <div class="form-box">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3>Registration</h3>
+          <p>Please fill the form below:</p>
+      </div>
+      <div class="form-top-right">
+        <i class="fa fa-book"></i>
+      </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :firstname, class:['sr-only'] %>
+              <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: ['form-control'], placeholder: 'First Name...' %>
+              <% if resource.errors[:firstname].size > 0 %><div class="form-error">Firstname: <%= resource.errors[:firstname].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :lastname, class:['sr-only'] %>
+              <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: ['form-control'], placeholder: 'Last Name...' %>
+              <% if resource.errors[:lastname].size > 0 %><div class="form-error">Lastname: <%= resource.errors[:lastname].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :username, class:['sr-only'] %>
+              <%= f.text_field :username, autofocus: true, autocomplete: "username", class: ['form-control'], placeholder: 'Username...' %>
+              <% if resource.errors[:username].size > 0 %><div class="form-error">Username: <%= resource.errors[:username].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, class:['sr-only'] %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: ['form-control'], placeholder: 'Email...' %>
+              <% if resource.errors[:email].size > 0 %><div class="form-error">Firstname: <%= resource.errors[:email].first %></div><% end %>
+            </div>            
+            <div class="form-group">
+              <%= f.label :password , class:['sr-only'] %>
+              <%= f.password_field :password, autocomplete: "password", class: ['form-control'], placeholder: 'Password...' + (@minimum_password_length ? '('+@minimum_password_length.to_s+' characters minimum)': '') %>
+              <% if resource.errors[:password].size > 0 %><div class="form-error">Password: <%= resource.errors[:password].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation, class:['sr-only'] %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: ['form-control'] , placeholder: 'Password confirmation' %>
+              <% if resource.errors[:password_confirmation].size > 0 %><div class="form-error">Password confirmation: <%= resource.errors[:password_confirmation].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :country_code, class:['sr-only'] %>
+              <%= f.country_select :country_code , { include_blank: 'Select your country please...' }, { class: 'form-control' } %>
+              <% if resource.errors[:country_code].size > 0 %><div class="form-error">Country: <%= resource.errors[:country_code].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :city, class:['sr-only'] %>
+              <%= f.text_field :city, autofocus: true, autocomplete: "city", class: ['form-control'], placeholder: 'City...' %>
+              <% if resource.errors[:city].size > 0 %><div class="form-error">City: <%= resource.errors[:city].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :address, class:['sr-only'] %>
+              <%= f.text_field :address, autofocus: true, autocomplete: "address", class: ['form-control'], placeholder: 'Address...' %>
+              <% if resource.errors[:address].size > 0 %><div class="form-error">Address: <%= resource.errors[:address].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :zip_code, class:['sr-only'] %>
+              <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code", class: ['form-control'], placeholder: 'Zip Code...' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :phone, class:['sr-only'] %>
+              <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: ['form-control'], placeholder: 'Phone number...' %>
+            </div>
+            <%= f.submit "Register", class: ['btn']%>
+        <% end %>
+    </div>
+  </div>
+
+<%= render "devise/shared/links" %>
+
+</div>
+
