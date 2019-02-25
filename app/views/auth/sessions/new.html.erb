@@ -1,0 +1,36 @@
+<div class="col-sm-6 col-xs-12 col-sm-offset-3">
+  <%= render 'auth/shared/alerts'%>
+  <div class="form-box">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3>Login to the Book Store</h3>
+          <p>Enter username and password to log on:</p>
+      </div>
+      <div class="form-top-right">
+        <i class="fa fa-book"></i>
+      </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :username, class:['sr-only'] %>
+              <%= f.text_field :username, autofocus: true, autocomplete: "username", class: ['form-control'], placeholder: 'Username...' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password , class:['sr-only'] %>
+              <%= f.password_field :password, autocomplete: "current-password", class: ['form-control'], placeholder: 'Password...' %>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <div class="form-group">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+            <%= f.submit "Log in", class: ['btn']%>
+        <% end %>
+    </div>
+  </div>
+
+<%= render "devise/shared/links" %>
+
+</div>

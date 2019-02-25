@@ -1,0 +1,27 @@
+<div class="col-sm-6 col-xs-12 col-sm-offset-3">
+  <div class="form-box">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3>Forgot your password?</h3>
+          <p>Please supply your email in the form bellow:</p>
+      </div>
+      <div class="form-top-right">
+        <i class="fa fa-book"></i>
+      </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, class:['sr-only'] %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: ['form-control'], placeholder: 'Email...' %>
+              <% if resource.errors[:email].size > 0 %><div class="form-error">Email: <%= resource.errors[:email].first %></div><% end %>
+            </div>
+            <%= f.submit "Send me reset password instructions", class: ['btn'] %>
+        <% end %>
+    </div>
+  </div>
+
+<%= render "devise/shared/links" %>
+
+</div>
+

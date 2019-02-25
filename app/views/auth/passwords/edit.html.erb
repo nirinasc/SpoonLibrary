@@ -1,0 +1,32 @@
+<div class="col-sm-6 col-xs-12 col-sm-offset-3">
+  <div class="form-box">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3>Change your password</h3>
+          <p>Please type your new password in the form bellow:</p>
+      </div>
+      <div class="form-top-right">
+        <i class="fa fa-book"></i>
+      </div>
+      </div>
+      <div class="form-bottom">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.hidden_field :reset_password_token %>
+            <div class="form-group">
+              <%= f.label :password, class:['sr-only'] %>
+              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: ['form-control'], placeholder: 'New Password...' + (@minimum_password_length ? '('+@minimum_password_length.to_s+' characters minimum)': '') %>
+              <% if resource.errors[:password].size > 0 %><div class="form-error">Email: <%= resource.errors[:password].first %></div><% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation, class:['sr-only'] %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: ['form-control'] , placeholder: 'Confirm new Password' %>
+              <% if resource.errors[:password_confirmation].size > 0 %><div class="form-error">Password confirmation: <%= resource.errors[:password_confirmation].first %></div><% end %>
+            </div>
+            <%= f.submit "Change my password", class: ['btn'] %>
+        <% end %>
+    </div>
+  </div>
+
+  <%= render "devise/shared/links" %>
+
+</div>

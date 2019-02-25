@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# create admin user
+if User.count < 1
+    admin = User.create!([
+        email: 'admin@spoonlibrary.com',
+        username: 'spoonlibrarian',
+        password: 'spoonL123',
+        firstname: 'John',
+        lastname: 'Doe',
+        role: 1,
+        active: true
+    ])
+end
