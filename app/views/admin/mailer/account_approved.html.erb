@@ -1,0 +1,8 @@
+<p>Hi <%= @user.firstname %> <%= @user.lastname %></p>
+<p>We are happy to announce you that your account has been <strong>approved</strong></p> 
+<p>You can now log on to the Spoon library by visiting <%= link_to new_user_session_url, new_user_session_url %> and enter your credentials: <br/>
+  <ul>
+   <li>Username: <%= @user.username %></li>
+   <li>Password: Your password</li>
+  </ul>  
+</p>

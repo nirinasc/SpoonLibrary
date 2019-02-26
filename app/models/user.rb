@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  
-  require 'countries'
+
+  attr_accessor :approved
 
   enum role: { member: 0, admin: 1 }
 

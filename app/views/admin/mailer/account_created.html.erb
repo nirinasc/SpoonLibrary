@@ -1,0 +1,8 @@
+<p>Hi <%= @user.firstname %> <%= @user.lastname %></p>
+<p>An administrator has created a <%= @user.role %> account for you</p>
+<p>You can now log on to the Spoon library by visiting <%= link_to new_user_session_url, new_user_session_url %> and use theses credentials: <br/>
+  <ul>
+   <li>Username: <%= @user.username %></li>
+   <li>Password: <%= @password %></li>
+  </ul>  
+</p>
