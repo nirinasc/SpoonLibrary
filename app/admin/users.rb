@@ -24,6 +24,7 @@ ActiveAdmin.register User do
 
     index do
         selectable_column
+        id_column
         column :firstname
         column :lastname
         column :username
@@ -70,8 +71,8 @@ ActiveAdmin.register User do
             input :role
             input :active
             input :country_code, label: 'Country', as: 'country', include_blank: true
-            input :address
             input :city
+            input :address
             input :zip_code
             input :phone
         end
