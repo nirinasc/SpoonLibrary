@@ -8,7 +8,8 @@ class Log < ApplicationRecord
   belongs_to :loan, class_name: 'Log', optional: true
 
   validates :classification, inclusion: { in: classifications.keys }
-  validates :loan, presence: { if: -> { self.book_return? } }, absence: { if: -> { self.book_loan? }}, uniqueness: true 
+  validates :loan, presence: { if: -> { self.book_return? } }, absence: { if: -> { self.book_loan? }}
+  validates :loan, uniqueness: true, allow_nil: true 
   validates_presence_of :date
   validates_datetime :date, if: -> { self.book_loan? }
   validates_datetime :date, after: :associated_loan_date, if: -> { self.book_return? }
