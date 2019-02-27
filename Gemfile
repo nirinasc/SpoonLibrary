@@ -48,6 +48,8 @@ gem 'will_paginate-bootstrap'
 
 gem 'carrierwave'
 
+gem 'mini_magick'
+
 gem 'cloudinary'
 
 gem 'devise'

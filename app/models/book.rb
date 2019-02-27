@@ -15,6 +15,8 @@ class Book < ApplicationRecord
     validates_date :pub_date, allow_nil: true
     validates :language, presence: true, inclusion: { in: languages.keys }
 
+    mount_uploader :cover_image, ImageUploader
+
     before_save :set_number_of_pages
 
     def set_number_of_pages
