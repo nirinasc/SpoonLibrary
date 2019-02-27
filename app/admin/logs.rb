@@ -24,7 +24,7 @@ ActiveAdmin.register Log do
         column :user 
         column :book
         column 'Referenced Book Loan' do |book_return|
-            link_to book_return.loan
+            link_to book_return.loan, admin_log_path(book_return.loan)
         end if params[:scope] == 'books_return'
         column :date
         column :due_date if params[:scope] == 'books_loan'
@@ -40,7 +40,7 @@ ActiveAdmin.register Log do
             row :book
             row :date
             row "Referenced Book Loan" do |book_return|
-                link_to book_return.loan
+                link_to book_return.loan, admin_log_path(book_return.loan)
             end if resource.book_return?
             row :returned if resource.book_loan?
             row "Recored at", :created_at
@@ -54,7 +54,7 @@ ActiveAdmin.register Log do
         inputs do
             f.input :user, input_html: { disabled: f.object.persisted? ? true : false }
             f.input :book, input_html: { disabled: f.object.persisted? ? true : false }
-            f.input :loan, as: 'select', collection: Log.book_loan.collect{ |book_loan| [book_loan, book_loan.id] }, allow_blank: true, input_html: { disabled: f.object.persisted? ? true : false }
+            f.input :loan, as: select, collection: Log.book_loan.collect{|book_loan| [book_loan, book_loan.id]}, allow_blank: true, input_html: { disabled: f.object.persisted? ? true : false }
             f.input :classification, label: 'Type' unless f.object.persisted?
             f.input :date
             f.input :due_date unless f.object.persisted? && f.object.book_return?
