@@ -31,7 +31,9 @@ ActiveAdmin.register Book do
         column :pub_date
         column :available
         column :created_at
-        actions
+        actions do |book|
+            item "Comments (#{book.comments_count}) ", admin_book_comments_path(book) 
+        end
     end
 
     #show page
@@ -52,6 +54,9 @@ ActiveAdmin.register Book do
             row :language
             row :available
             row :created_at
+            row 'Comments' do |book|
+                link_to book.comments.count, admin_book_comments_path(book)
+            end
         end
     end
 

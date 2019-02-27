@@ -12,33 +12,33 @@ ActiveAdmin.register Category do
 #   permitted
 # end
 
-filter :name
+    filter :name
 
-index do
-    id_column
-    column :name
-    column :created_at
-    actions
-end
-
-#show page
-show do
-    attributes_table do
-        row :name
-        row :description
-        row :created_at
+    index do
+        id_column
+        column :name
+        column :created_at
+        actions
     end
-end
 
-#form
-permit_params :name, :description
-
-form do |f|
-    inputs do
-        input :name
-        input :description
+    #show page
+    show do
+        attributes_table do
+            row :name
+            row :description
+            row :created_at
+        end
     end
-    actions
-end
+
+    #form
+    permit_params :name, :description
+
+    form do |f|
+        inputs do
+            input :name
+            input :description
+        end
+        actions
+    end
 
 end
