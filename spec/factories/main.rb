@@ -50,13 +50,11 @@ FactoryBot.define do
         classification { 0 }
         date { Date.today }
         due_date { 21.days.from_now }
-        returned { false }
     end
 
     factory :book_return, class: 'Log' do 
         classification { 1 }
         date { Faker::Date.between(3.days.from_now, 21.days.from_now ) }
-        returned { false }
     end
 
 end

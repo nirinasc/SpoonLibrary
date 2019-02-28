@@ -1,0 +1,7 @@
+<%= semantic_form_for @book_return, url: book_return_admin_log_path(resource)  do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :loan, label: 'Book Loan', :input_html => { :disabled => true }%>
+      <%= f.input :date %>
+    <% end %>
+    <%= f.actions %>
+<% end %>
