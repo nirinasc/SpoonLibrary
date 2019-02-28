@@ -77,7 +77,19 @@
                         <span></span>
                         <span></span>
                     </button>
-            
+
+                    <div class="nav-profile pull-right">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="profileNavMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <%= current_user.username %>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="profileNavMenu">
+                                <li><%= link_to 'Profile', edit_user_registration_path %>
+                                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
             
