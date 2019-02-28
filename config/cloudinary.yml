@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: nirina-st
+  api_key: '665159169683186'
+  api_secret: hVr_NrYHBplEYEuIgWfFuKYUCL4
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: nirina-st
+  api_key: '665159169683186'
+  api_secret: hVr_NrYHBplEYEuIgWfFuKYUCL4
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: nirina-st
+  api_key: '665159169683186'
+  api_secret: hVr_NrYHBplEYEuIgWfFuKYUCL4
+  enhance_image_tag: true
+  static_file_support: false

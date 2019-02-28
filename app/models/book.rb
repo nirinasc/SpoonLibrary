@@ -4,7 +4,7 @@ class Book < ApplicationRecord
     enum language: { english: 0, french: 1 }
 
     belongs_to :library
-    has_many :comments
+    has_many :comments, dependent: :destroy
     has_many :logs
     has_and_belongs_to_many :categories
 
@@ -14,6 +14,8 @@ class Book < ApplicationRecord
     validates :format, presence: true, inclusion: { in: formats.keys } 
     validates_date :pub_date, allow_nil: true
     validates :language, presence: true, inclusion: { in: languages.keys }
+
+    mount_uploader :cover_image, ImageUploader
 
     before_save :set_number_of_pages
 
