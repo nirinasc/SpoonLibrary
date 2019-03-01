@@ -1,3 +1,8 @@
+<div class="libraries-nav">
+    <% @libraries.each do |library| %>   
+        <a class="btn btn-default <%= ( params[:library].present? &&  params[:library].to_i == library.id ) ? ' active' : '' %>" href="<%= store_index_path(library)%>"><%= library.name %></a>
+    <% end %>
+</div>
 <div class="books-container">
   <div class="books-lits-wrapp col-md-12 col-lg-9">
       <div class="row">
@@ -24,7 +29,7 @@
     <%= will_paginate @books %>
   </div>
   <div class="book-search-wrapp col-md-8 col-md-offset-4 col-lg-3 col-lg-offset-0">
-    <%= search_form_for @q, url: store_index_path do |f| %>
+    <%= search_form_for @q, url: '' do |f| %>
         <fieldset>
             <legend>Filters</legend>
             <div class="row">

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # devise_for :users, ActiveAdmin::Devise.config
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/notifications/signup-success', to: 'auth/notifications#success_signup', as: 'notifications_success_signup'
-  get '/store', to: 'store#index', as: 'store_index'
+  get '/store(/library/:library)', to: 'store#index', as: 'store_index'
   get '/store/:id', to: 'store#show', as: 'store_show'
 
   root to: 'home#index'
