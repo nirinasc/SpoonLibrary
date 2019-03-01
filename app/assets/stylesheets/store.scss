@@ -221,6 +221,45 @@ legend
     }
 }
 
+.categories-nav {
+    padding: 0 20px;
+
+    .btn {
+        margin: 0 10px;
+        padding: 16px 24px;
+        border-radius: 0;
+        border: 1px solid #eee;
+    }
+}
+
+.books-container {
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.book-box {
+    margin: 16px 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px #eee;
+
+    .box-image {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        vertical-align: center;
+    }
+
+    .box-content {
+        h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+    }
+}
+
 
 /* ---------------------------------------------------
     MEDIAQUERIES

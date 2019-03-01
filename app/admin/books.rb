@@ -61,11 +61,12 @@ ActiveAdmin.register Book do
     end
 
     #form
-    permit_params :library_id, :name, :isbn, :author, :description, :cover_image, :number_of_pages, :format, :publisher, :pub_date, :language, :available
+    permit_params :library_id, :name, :isbn, :author, :description, :cover_image, :number_of_pages, :format, :publisher, :pub_date, :language, :available, category_ids: []
 
     form :html => { :multipart => true } do |f|
         inputs do
             input :library
+            input :categories
             input :name
             input :isbn
             input :author

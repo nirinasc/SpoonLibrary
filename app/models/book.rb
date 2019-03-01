@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+    extend FriendlyId
+    friendly_id :name, use: :slugged
 
     enum format: { paper: 0 }
     enum language: { english: 0, french: 1 }
@@ -14,10 +16,16 @@ class Book < ApplicationRecord
     validates :format, presence: true, inclusion: { in: formats.keys } 
     validates_date :pub_date, allow_nil: true
     validates :language, presence: true, inclusion: { in: languages.keys }
+    validates :library, presence: true
+    validates :categories, presence: true
 
     mount_uploader :cover_image, ImageUploader
 
     before_save :set_number_of_pages
+
+    def should_generate_new_friendly_id?
+        self.name_changed?
+    end
 
     def set_number_of_pages
         self.number_of_pages = self.number_of_pages ? self.number_of_pages : 0

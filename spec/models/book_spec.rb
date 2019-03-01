@@ -4,7 +4,12 @@ RSpec.describe Book, type: :model do
 
   context 'Validation' do
     subject(:library) { FactoryBot.create(:library) }
-    subject(:book) { FactoryBot.build(:book, library: library) }
+    subject(:categories) {
+      categories = []
+      3.times { categories << FactoryBot.create(:category) }
+      return categories
+    }
+    subject(:book) { FactoryBot.build(:book, library: library, categories: categories) }
 
     shared_examples 'unable to persist book' do
       it 'can not be persisted' do 
@@ -77,7 +82,7 @@ RSpec.describe Book, type: :model do
 
     context 'when isbn value already exists' do
       before do
-        another_book = FactoryBot.create(:book, library: library, isbn: book.isbn)
+        another_book = FactoryBot.create(:book, library: library, isbn: book.isbn, categories: categories)
         book.valid?
       end
       it 'get isbn attribute uniqueness error' do
