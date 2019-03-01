@@ -253,6 +253,7 @@ legend
     padding: 16px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     background-color: #fff;
     box-shadow: 1px 1px 1px #eee;
 
@@ -281,6 +282,15 @@ legend
         
         .more {
             color: #11b1df;
+        }
+
+        .metas {
+            padding: 8px 0;
+        }
+
+        .meta-item {
+            display: block;
+            padding: 2px 0;
         }
     }
 }
