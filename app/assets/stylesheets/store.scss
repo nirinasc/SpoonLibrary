@@ -5,6 +5,7 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import "form.error";
+@import "spacing";
 
 
 body {
@@ -294,6 +295,120 @@ legend
         }
     }
 }
+
+
+.book-details-box {
+    margin: 16px 0;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px #eee;
+    font-size: 14.5px;
+
+    .middle {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 16px;
+
+        .box-image {
+            width: 200px;
+            height: 270px;
+            text-align: left;
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .box-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: calc(100% - 200px);
+            padding-left: 20px;
+    
+            .meta-item {
+                display: block;
+                padding: 2px 0;
+            }
+
+            .description {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.comments-box {
+
+    .comment-item {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    
+        .user-avatar {
+            width: 64px;
+        }
+    
+        .panel {
+            position:relative;
+            margin-left: 16px;
+        }
+    
+        .panel>.panel-heading:after,.panel>.panel-heading:before{
+            position:absolute;
+            top:11px;
+            left:-16px;
+            right:100%;
+            width:0;
+            height:0;
+            display:block;
+            content:" ";
+            border-color:transparent;
+            border-style:solid solid outset;
+            pointer-events:none;
+        }
+    
+        .panel>.panel-heading:after{
+            border-width:7px;
+            border-right-color:#f7f7f7;
+            margin-top:1px;
+            margin-left:2px;
+        }
+    
+        .panel>.panel-heading:before{
+            border-right-color:#ddd;
+            border-width:8px;
+        }
+    }
+
+    .comments-lists {
+        margin-top: 50px;
+    }
+    
+    .comment-form {
+        margin-top: 20px;
+
+        input[type="submit"] {
+            margin: 8px 0;
+        }
+    }
+
+}
+
+.book-borrow-box {
+    margin-top: 20px;
+
+    input[type="submit"] {
+        margin: 15px 0 4px 0;
+    }
+}
+
+.due-date.over {
+    color: red
+}
+
+
 
 
 /* ---------------------------------------------------

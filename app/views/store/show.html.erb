@@ -1,0 +1,84 @@
+<%= render 'auth/shared/alerts'%>
+
+<div class="page-container">
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-8">
+            <div class="book-details-box">
+                <div class="top">
+                    <h2><%= @book.name %></h2>
+                    <div class="book-categories">
+                        <%= @book.categories.pluck(:name).join(" ,") %>
+                    </div>
+                </div>
+                <div class="middle">
+                    <div class="box-image">
+                        <%= image_tag @book.cover_image.present? ? @book.cover_image_url(:medium) : 'cover.jpg' %>
+                    </div>
+                    <div class="box-content">
+                        <div class="metas">
+                            <span class="meta-item">Author: <%= @book.author %></span>
+                            <span class="meta-item">Pub Date: <%= @book.pub_date %></span>
+                            <span class="meta-item">ISBN: <%= @book.isbn %></span>
+                            <span class="meta-item">Pages: <%= @book.number_of_pages %></span>
+                            <span class="meta-item">Language: <%= @book.language.capitalize %></span>
+                            <span class="meta-item">Format: <%= @book.format.capitalize %></span>
+                        </div>
+                        <div class="description">
+                            <p><strong>Resume</strong></p>
+                            <%= @book.description.html_safe %>
+                        </div>
+                        <div class="comments-box">
+                            <% if @book.comments.size > 0 %> 
+                                <div class="comments-lists">
+                                    <h3>Comments</h3>   
+                                    <% @book.comments.each do |comment| %>
+                                        <div class="comment-item">
+                                            <div class="thumbnail user-avatar">
+                                                <img class="img-responsive" src="<%= asset_url 'avatar_2x.png' %>" />
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <strong><%= comment.user.username %></strong> <span class="text-muted">commented <%= time_ago_in_words(comment.created_at) %> ago</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <%= comment.content %>
+                                                </div>
+                                            </div>        
+                                        </div>                 
+                                    <% end %>
+                                </div>
+                            <% end %>
+                            <div class="comment-form">
+                                <%= form_for @comment, url: store_comments_create_path do |f| %>
+                                    <%= f.text_area :content, class: ['form-control'], cols: 10, rows: 5, placeholder: 'Put you comment here' %>
+                                    <%= f.submit 'Send', class: ['btn btn-default'] %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-4">
+            <div class="book-borrow-box">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                       Book Loan
+                    </div>
+                    <div class="panel-body">
+                      <% if @book.available %>
+                        <small>To borrow this book, please click on the button bellow</small>
+                        <%= form_for @book, url: store_loan_path, method: 'POST' do |f| %>
+                            <%= f.submit 'Borrow this book', class: ['btn btn-default'] %>
+                        <% end %>
+                      <% else %>
+                           This book is not available 
+                      <% end %>  
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+</div>

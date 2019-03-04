@@ -10,6 +10,8 @@ class Book < ApplicationRecord
     has_many :logs
     has_and_belongs_to_many :categories
 
+    scope :available, -> { where(available: true)}
+
     validates :name, presence: true
     validates :isbn, presence: true, length: { maximum: 13 }, uniqueness: true
     validates :number_of_pages, numericality: true, presence: { if: -> { self.paper? } }

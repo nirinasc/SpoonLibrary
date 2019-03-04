@@ -38,7 +38,7 @@ FactoryBot.define do
         publisher { Faker::Book.publisher }
         pub_date { Faker::Date.backward(600) }
         language { Faker::Number.between(0, 1) }
-        available { Faker::Boolean.boolean }
+        available { true }
     end
 
     factory :comment do
