@@ -1,0 +1,64 @@
+<%= render 'auth/shared/alerts'%>
+
+<div class="page-container">
+    <h2>My Books Loan</h2>
+
+    <div class="col-md-12 col-lg-9">
+        <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Date</th>
+                <th>Due Date</th>
+                <th>Returned</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @loans.each do |loan| %>
+                <tr>
+                    <td><%= link_to loan.book.name, store_show_path(loan.book) %></td>
+                    <td><%= loan.date.strftime("%B %d, %Y %H::%M") %></td>
+                    <td><span class="due-date <%= DateTime.now > loan.due_date && !loan.returned ? 'over' : '' %>"><%= loan.due_date.strftime("%B %d, %Y %H::%M") %></span></td>
+                    <td><% if loan.returned %><button class="btn btn-small btn-primary">Yes</button><% else %><button class="btn btn-small btn-default">No</button><% end %></td>
+                    <td>
+                    <% if !loan.returned %>
+                        <%= form_for loan, url: store_return_path(loan), method: 'POST' do |f| %>
+                            <%= f.submit 'Return this book', class: ['btn btn-small btn-primary'] %>
+                        <% end %> 
+                    <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+        <%= will_paginate @loans %>
+    </div>
+    <div class="book-search-wrapp col-md-8 col-md-offset-4 col-lg-3 col-lg-offset-0">
+        <%= search_form_for @q, url: '' do |f| %>
+            <fieldset>
+                <legend>Filters</legend>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            <%= f.label :book_id_eq, "Book" %>
+                        </div>
+                        <div class="col-xs-8">
+                            <%= f.collection_select :book_id_eq, current_user.books.distinct(:name).order(:name), :id, :name, {include_blank: 'Select a book'}, {:class => 'form-control'} %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            <%= f.label :returned_cont, 'Returned' %>
+                        </div>
+                        <div class="col-xs-8">
+                            <%= f.select :returned_eq, [['Yes', true], ['No', false]], { include_blank: 'All' }, { class: 'form-control' } %>
+                        </div>
+                    </div>
+                </div>
+
+                <%= f.submit 'Search', class: ['btn btn-default pull-right'] %>
+            </fieldset>
+        <% end %>
+    </div>
+</div>

@@ -50,7 +50,7 @@ ActiveAdmin.register Comment do
     end
 
     controller do
-        before_action  -> { @book = Book.find(params[:book_id]) }
+        before_action  -> { @book = Book.friendly.find(params[:book_id]) }
 
         def new
             @page_title = "#{@book.name} #New Comment" 

@@ -41,12 +41,13 @@ ActiveAdmin.register Log do
             row :user
             row :book
             row :date
+            row :due_date if resource.book_loan?
             row "Referenced Book Loan" do |book_return|
                 link_to book_return.loan, admin_log_path(book_return.loan)
             end if resource.book_return?
             row :returned if resource.book_loan?
             row "Referenced return" do |book_loan|
-                link_to book_loan.return, admin_log_path(book_loan.return)    
+                link_to book_loan.return, admin_log_path(book_loan.return) if book_loan.return    
             end if resource.book_loan? && resource.returned
             row "Recored at", :created_at
         end

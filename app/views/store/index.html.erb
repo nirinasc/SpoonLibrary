@@ -1,18 +1,60 @@
-<h2>Collapsible Sidebar Using Bootstrap 4</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="libraries-nav">
+    <% @libraries.each do |library| %>   
+        <a class="btn btn-default <%= ( params[:library].present? &&  params[:library].to_i == library.id ) ? ' active' : '' %>" href="<%= store_index_path(library)%>"><%= library.name %></a>
+    <% end %>
+</div>
+<div class="books-container">
+  <div class="books-lits-wrapp col-md-12 col-lg-9">
+      <div class="row">
+        <% @books.each do |book| %>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="book-box">
+                    <div class="box-image">
+                        <%= image_tag book.cover_image.present? ? book.cover_image_url(:thumbnail) : 'cover.jpg' %>
+                    </div>
+                    <div class="box-content">
+                        <h3><%= book.name %></h3>
+                        <div class="metas">
+                            <span class="meta-item">Author: <%= book.author %></span>
+                            <span class="meta-item">Pub Date: <%= book.pub_date %></span>
+                            <span class="meta-item">ISBN: <%= book.isbn %></span>
+                            <span class="meta-item">Language: <%= book.language.capitalize %></span>
+                        </div>
+                        <a class="more" href="<%= store_show_path book %>">View more</a>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <%= will_paginate @books %>
+  </div>
+  <div class="book-search-wrapp col-md-8 col-md-offset-4 col-lg-3 col-lg-offset-0">
+    <%= search_form_for @q, url: '' do |f| %>
+        <fieldset>
+            <legend>Filters</legend>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <%= f.label :categories_id_eq, "Category" %>
+                    </div>
+                    <div class="col-xs-8">
+                        <%= f.collection_select :categories_id_eq, Category.order(:name), :id, :name, {include_blank: 'Select a category'}, {:class => 'form-control'} %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <%= f.label :name_cont, 'Name' %>
+                    </div>
+                    <div class="col-xs-8">
+                        <%= f.search_field :name_cont, class: ['form-control'] %>
+                    </div>
+                </div>
+            </div>
 
-            <div class="line"></div>
+            <%= f.submit 'Search', class: ['btn btn-default pull-right'] %>
+        </fieldset>
+    <% end %>
+ </div>
+</div>
 
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-            <div class="line"></div>
-
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-            <div class="line"></div>
-
-            <h3>Lorem Ipsum Dolor</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

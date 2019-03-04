@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'store', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -14,54 +15,27 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Spoon Library</h3>
+                <h3><a href="/store">Spoon Library</a></h3>
             </div>
 
             <ul class="list-unstyled components">
-                <p>Dummy Heading</p>
+                <p>General</p>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <a href="<%= store_index_path %>">Store</a>
+                </li>
+                <li>
+                    <a href="<%= edit_user_registration_path %>">Profile</a>
+                </li>
+                <li>
+                    <a href="#logSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Logs</a>
+                    <ul class="collapse list-unstyled" id="logSubmenu">
                         <li>
-                            <a href="#">Home 1</a>
+                            <a href="<%= store_loans_path %>">Loan</a>
                         </li>
                         <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
+                            <a href="<%= store_returns_path %>">Return</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
                 </li>
             </ul>
         </nav>
@@ -77,7 +51,18 @@
                         <span></span>
                         <span></span>
                     </button>
-            
+
+                    <div class="nav-profile pull-right">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="profileNavMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <%= current_user.username %>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="profileNavMenu">
+                                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
             

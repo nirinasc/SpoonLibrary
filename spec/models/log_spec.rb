@@ -4,7 +4,12 @@ RSpec.describe Log, type: :model do
 
   context 'Validation' do
     subject(:user) { FactoryBot.create(:user)}
-    subject(:book) { FactoryBot.create(:book, library: FactoryBot.create(:library)) }
+    subject(:categories) {
+      categories = []
+      3.times { categories << FactoryBot.create(:category) }
+      return categories
+    }
+    subject(:book) { FactoryBot.create(:book, library: FactoryBot.create(:library), categories: categories) }
     subject(:book_loan) { FactoryBot.build(:book_loan, user: user, book: book) }
     subject(:book_return) { FactoryBot.build(:book_return, user: user, book: book, loan: book_loan) }
 

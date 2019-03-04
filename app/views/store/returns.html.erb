@@ -1,0 +1,43 @@
+<%= render 'auth/shared/alerts'%>
+
+<div class="page-container">
+    <h2>My Books Returns</h2>
+    <div class="col-md-12 col-lg-9">
+        <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @returns.each do |book_return| %>
+                <tr>
+                    <td><%= link_to book_return.book.name, store_show_path(book_return.book) %></td>
+                    <td><%= book_return.date.strftime("%B %d, %Y %H::%M") %></td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+        <%= will_paginate @returns %>
+    </div>
+    <div class="book-search-wrapp col-md-8 col-md-offset-4 col-lg-3 col-lg-offset-0">
+        <%= search_form_for @q, url: '' do |f| %>
+            <fieldset>
+                <legend>Filters</legend>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            <%= f.label :book_id_eq, "Book" %>
+                        </div>
+                        <div class="col-xs-8">
+                            <%= f.collection_select :book_id_eq, current_user.books.distinct(:name).order(:name), :id, :name, {include_blank: 'Select a book'}, {:class => 'form-control'} %>
+                        </div>
+                    </div>
+                </div>
+
+                <%= f.submit 'Search', class: ['btn btn-default pull-right'] %>
+            </fieldset>
+        <% end %>
+    </div>
+</div>

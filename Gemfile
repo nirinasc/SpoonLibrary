@@ -60,6 +60,10 @@ gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
 gem 'country_select', '~> 4.0'
 
+gem 'friendly_id', '~> 5.2.4'
+
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
