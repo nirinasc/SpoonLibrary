@@ -13,4 +13,10 @@ class AdminMailer < ApplicationMailer
         @user = user
         mail(to: user.email, subject: "Your account has been approved")
     end
+
+    def notify(recipients:, subject:, content:)
+        @content = content
+        mail(to: recipients, subject: subject)
+    end
+
 end

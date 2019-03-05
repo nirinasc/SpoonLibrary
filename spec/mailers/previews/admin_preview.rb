@@ -6,4 +6,7 @@ class AdminPreview < ActionMailer::Preview
     def account_approved
         AdminMailer.account_approved(User.member.first)
     end
+    def message
+        AdminMailer.notify(recipients: ['john@example.com','erick@example.com'], subject: 'Welcome To Spoon Library', content:'Welcome to our Library!!')
+    end
 end
