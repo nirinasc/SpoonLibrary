@@ -9,4 +9,8 @@ class AdminPreview < ActionMailer::Preview
     def message
         AdminMailer.notify(recipients: ['john@example.com','erick@example.com'], subject: 'Welcome To Spoon Library', content:'Welcome to our Library!!')
     end
+    def book_return_remind
+        loan = Log.book_loan.first
+        AdminMailer.book_return_remind(loan)
+    end
 end

@@ -19,4 +19,9 @@ class AdminMailer < ApplicationMailer
         mail(to: recipients, subject: subject)
     end
 
+    def book_return_remind(loan)
+       @loan = loan 
+       mail(to: loan.user.email, subject: "#{loan.book.name} Book Loan Due Date Passed")
+    end
+
 end

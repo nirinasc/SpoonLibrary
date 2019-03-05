@@ -8,6 +8,7 @@ class Log < ApplicationRecord
   belongs_to :loan, class_name: 'Log', optional: true
 
   scope :unreturned, -> { where(returned: false) }
+  scope :over_due_dated, -> { where("due_date < ?", DateTime.now) }
 
   validates :classification, inclusion: { in: classifications.keys }
   validates :loan, presence: { if: -> { self.book_return? } }, absence: { if: -> { self.book_loan? }}
