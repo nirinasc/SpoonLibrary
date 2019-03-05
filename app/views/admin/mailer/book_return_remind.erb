@@ -1,0 +1,3 @@
+<p>Hi <%= @loan.user.firstname %> <%= @loan.user.lastname %></p>
+<p>We want to remind you that the book "<%= @loan.book.name %>" you lent on <%= @loan.date.strftime("%B %d, %Y %H::%M") %> should have been returned before <%= @loan.due_date.strftime("%B %d, %Y %H::%M") %></p>
+<p>Spoon Library</p>

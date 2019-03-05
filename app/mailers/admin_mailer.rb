@@ -13,4 +13,15 @@ class AdminMailer < ApplicationMailer
         @user = user
         mail(to: user.email, subject: "Your account has been approved")
     end
+
+    def notify(recipients:, subject:, content:)
+        @content = content
+        mail(to: recipients, subject: subject)
+    end
+
+    def book_return_remind(loan)
+       @loan = loan 
+       mail(to: loan.user.email, subject: "#{loan.book.name} Book Loan Due Date Passed")
+    end
+
 end

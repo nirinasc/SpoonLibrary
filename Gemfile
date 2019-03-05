@@ -56,6 +56,8 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'cancancan', '~> 2.0'
+
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
 gem 'country_select', '~> 4.0'
@@ -63,6 +65,8 @@ gem 'country_select', '~> 4.0'
 gem 'friendly_id', '~> 5.2.4'
 
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+gem 'whenever', require: false
 
 
 group :development, :test do

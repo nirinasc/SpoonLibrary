@@ -1,0 +1,10 @@
+<%= semantic_form_for message, url: admin_messages_create_path  do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :subject, label: 'Subject' %>
+      <%= f.input :content, as: 'text', label: 'Message' %>
+      <%= f.input :recipients, as: 'select', label: 'Recipients', collection: User.member.pluck(:username, :email), :input_html => { :multiple => true } %>
+    <% end %>
+    <%= f.actions do %>
+        <%= f.action :submit, label: 'Send' %>
+    <% end %>
+<% end %>
