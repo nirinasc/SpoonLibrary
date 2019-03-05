@@ -63,6 +63,9 @@
                             </ul>
                         </div>
                     </div>
+                    <% if current_user.admin? %>
+                      <a class="btn btn-small btn-default pull-right m-t-10 m-r-5" href="<%= admin_root_path %>">Go to Admin</a>   
+                    <% end %>
                 </div>
             </nav>
             

@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
         resource.admin? ? admin_root_path : store_index_path
     end
 
+    def access_denied(exception)
+        redirect_to store_index_path, alert: exception.message
+    end
+
     private
 
     def set_layout

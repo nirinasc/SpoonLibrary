@@ -56,6 +56,8 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'cancancan', '~> 2.0'
+
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
 gem 'country_select', '~> 4.0'
