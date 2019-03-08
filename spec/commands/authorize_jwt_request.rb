@@ -25,14 +25,14 @@ RSpec.describe AuthorizeJWTRequest do
       context 'when account inactive' do
         it 'raises an non active account error' do
           expect { described_class.call(inactive_user_header) }
-            .to raise_error(API::ExceptionHandler::InactiveAccount, 'Account not active')
+            .to raise_error(API::JWTExceptionHandler::InactiveAccount, 'Account not active')
         end        
       end
 
       context 'when missing token' do
         it 'raises a MissingToken error' do
           expect { described_class.call() }
-            .to raise_error(API::ExceptionHandler::MissingToken, 'Missing token')
+            .to raise_error(API::JWTExceptionHandler::MissingToken, 'Missing token')
         end
       end
 
@@ -40,17 +40,17 @@ RSpec.describe AuthorizeJWTRequest do
 
         it 'raises an InvalidToken error' do
           expect { described_class.call('Authorization' => token_generator(5)) }
-            .to raise_error(API::ExceptionHandler::InvalidToken, /Invalid token/)
+            .to raise_error(API::JWTExceptionHandler::InvalidToken, /Invalid token/)
         end
       end
 
       context 'when token is expired' do
-        let(:header) { { 'Authorization' => expired_token_generator(user.id) } }
+        let(:header) { { 'Authorization' => expired_token_generator(active_user.id) } }
 
-        it 'raises ExceptionHandler::ExpiredSignature error' do
+        it 'raises JWTExceptionHandler::ExpiredSignature error' do
           expect { described_class.call(header) }
             .to raise_error(
-              API::ExceptionHandler::InvalidToken,
+              API::JWTExceptionHandler::InvalidToken,
               /Signature has expired/
             )
         end
@@ -62,7 +62,7 @@ RSpec.describe AuthorizeJWTRequest do
         it 'handles JWT::DecodeError' do
           expect { described_class.call(header) }
             .to raise_error(
-              API::ExceptionHandler::InvalidToken,
+              API::JWTExceptionHandler::InvalidToken,
               /Not enough or too many segments/
             )
         end

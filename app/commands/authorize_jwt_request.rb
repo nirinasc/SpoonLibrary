@@ -20,11 +20,11 @@ class AuthorizeJWTRequest
           if user.active
             @user = user
           else
-            raise(API::ExceptionHandler::InactiveAccount,APIMessages.account_not_active) 
+            raise(API::JWTExceptionHandler::InactiveAccount,APIMessages.account_not_active) 
           end
       end
       rescue ActiveRecord::RecordNotFound => e
-        raise(API::ExceptionHandler::InvalidToken,("#{APIMessages.invalid_token} #{e.message}"))
+        raise(API::JWTExceptionHandler::InvalidToken,("#{APIMessages.invalid_token} #{e.message}"))
     end
   
     def decoded_auth_token
@@ -35,6 +35,6 @@ class AuthorizeJWTRequest
       if headers['Authorization'].present?
         return headers['Authorization'].split(' ').last
       end
-      raise(API::ExceptionHandler::MissingToken, APIMessages.missing_token)
+      raise(API::JWTExceptionHandler::MissingToken, APIMessages.missing_token)
     end
 end

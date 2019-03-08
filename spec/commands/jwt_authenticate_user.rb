@@ -21,7 +21,7 @@ RSpec.describe JWTAuthenticateUser do
         it 'raise an authentication error with inactive account message' do
             expect { described_class.call(nonactive_user.username, nonactive_user.password) }
                .to raise_error(
-                API::ExceptionHandler::InactiveAccount,
+                API::JWTExceptionHandler::InactiveAccount,
                 /Account not active/
               )
           end 
@@ -33,7 +33,7 @@ RSpec.describe JWTAuthenticateUser do
       it 'raises an authentication error with invalid credential message' do
         expect { described_class.call('foo', 'bar') }
           .to raise_error(
-            API::ExceptionHandler::AuthenticationError,
+            API::JWTExceptionHandler::AuthenticationError,
             /Invalid credentials/
           )
       end

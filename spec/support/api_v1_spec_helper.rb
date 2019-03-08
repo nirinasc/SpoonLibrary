@@ -1,5 +1,5 @@
 # spec/support/api_helper.rb
-module ApiSpecHelper
+module ApiV1SpecHelper
     # generate tokens from user id
     def token_generator(user_id)
       JsonWebToken.encode(user_id: user_id)

@@ -19,9 +19,9 @@ class JWTAuthenticateUser
       
       if user && user.valid_password?(password)
           return user if user.active
-          raise(API::ExceptionHandler::InactiveAccount, APIMessages.account_not_active)
+          raise(API::JWTExceptionHandler::InactiveAccount, APIMessages.account_not_active)
       end
   
-      raise(API::ExceptionHandler::AuthenticationError, APIMessages.invalid_credentials)
+      raise(API::JWTExceptionHandler::AuthenticationError, APIMessages.invalid_credentials)
     end
 end

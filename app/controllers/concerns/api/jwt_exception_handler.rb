@@ -1,4 +1,4 @@
-module API::ExceptionHandler
+module API::JWTExceptionHandler
     extend ActiveSupport::Concern
   
     # Define custom error subclasses - rescue catches `StandardErrors`
@@ -10,13 +10,13 @@ module API::ExceptionHandler
     included do
       # Define custom handlers
       rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
-      rescue_from API::ExceptionHandler::AuthenticationError, with: :unauthorized_request
-      rescue_from API::ExceptionHandler::InactiveAccount, with: :unauthorized_request
-      rescue_from API::ExceptionHandler::MissingToken, with: :four_twenty_two
-      rescue_from API::ExceptionHandler::InvalidToken, with: :four_twenty_two
+      rescue_from API::JWTExceptionHandler::AuthenticationError, with: :unauthorized_request
+      rescue_from API::JWTExceptionHandler::InactiveAccount, with: :unauthorized_request
+      rescue_from API::JWTExceptionHandler::MissingToken, with: :four_twenty_two
+      rescue_from API::JWTExceptionHandler::InvalidToken, with: :four_twenty_two
   
       rescue_from ActiveRecord::RecordNotFound do |e|
-        json_response({ message: e.message }, :not_found)
+        render json: { message: e.message }, status: :not_found
       end
     end
   
@@ -24,11 +24,11 @@ module API::ExceptionHandler
   
     # JSON response with message; Status code 422 - unprocessable entity
     def four_twenty_two(e)
-      json_response({ message: e.message }, :unprocessable_entity)
+      render json: { message: e.message }, status: :unprocessable_entity
     end
   
     # JSON response with message; Status code 401 - Unauthorized
     def unauthorized_request(e)
-      json_response({ message: e.message }, :unauthorized)
+      render json: { message: e.message }, status: :unauthorized
     end
 end

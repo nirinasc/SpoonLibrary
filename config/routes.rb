@@ -29,18 +29,20 @@ Rails.application.routes.draw do
 
   #rest api end points
   namespace :api, :defaults => {:format => :json} do
-    post '/auth/login', to: 'auth#login', as: 'auth_login'
-    get '/users/me', to: 'users#me', as: 'user_me'
-    resources :libraries,  only: :index
-    resources :categories,  only: :index 
-    resources :books,  only: [:index,:show] do
-      resources :comments, only: [:index, :create]
+    scope module: :v1, constraints: ApiVersion.new('v1', true) do
+      post '/auth/login', to: 'auth#login', as: 'auth_login'
+      get '/users/me', to: 'users#me', as: 'user_me'
+      resources :libraries,  only: :index
+      resources :categories,  only: :index 
+      resources :books,  only: [:index,:show] do
+        resources :comments, only: [:index, :create]
+      end
+      #loans and book returns
+      get '/logs/loans', to: 'logs#loans', as: 'loans'
+      get '/logs/returns', to: 'logs#returns', as: 'returns'
+      post '/logs/:loan_id/returns', to: 'logs#create_return', as: 'return_create'
+      post '/logs/:book_id/loans', to: 'logs#create_loan', as: 'loan_create'
     end
-    #loans and book returns
-    get '/logs/loans', to: 'logs#loans', as: 'loans'
-    get '/logs/returns', to: 'logs#returns', as: 'returns'
-    post '/logs/:loan_id/returns', to: 'logs#create_return', as: 'return_create'
-    post '/logs/:book_id/loans', to: 'logs#create_loan', as: 'loan_create'
   end
   
   root to: 'home#index'

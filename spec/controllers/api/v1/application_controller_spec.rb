@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe API::ApplicationController, type: :controller do
+RSpec.describe API::V1::ApplicationController, type: :controller do
 
     let!(:active_user) { FactoryBot.create(:user, active: true) }
     let!(:nonactive_user) { FactoryBot.create(:user, username: 'erick') }
@@ -21,7 +21,7 @@ RSpec.describe API::ApplicationController, type: :controller do
             
                 it "raises Account not valid error" do
                     expect { subject.instance_eval { authenticate_request } }.
-                    to raise_error(API::ExceptionHandler::InactiveAccount, /Account not active/)
+                    to raise_error(API::JWTExceptionHandler::InactiveAccount, /Account not active/)
                 end
             end
         end
@@ -32,7 +32,7 @@ RSpec.describe API::ApplicationController, type: :controller do
             end
             it "raises MissingToken error" do
                 expect { subject.instance_eval { authenticate_request } }.
-                to raise_error(API::ExceptionHandler::MissingToken, /Missing token/)
+                to raise_error(API::JWTExceptionHandler::MissingToken, /Missing token/)
             end
         end
     end

@@ -74,6 +74,12 @@ gem 'simple_command'
 
 gem 'figaro'
 
+gem 'active_model_serializers'
+
+gem 'rubocop', require: false
+
+gem 'rack-cors'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
