@@ -3,7 +3,12 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   
   context 'Validation' do
-    subject(:comment) { FactoryBot.build(:comment, user: FactoryBot.create(:user), book: FactoryBot.create(:book, library: FactoryBot.create(:library))) }
+    subject(:categories) {
+      categories = []
+      3.times { categories << FactoryBot.create(:category) }
+      return categories
+    }
+    subject(:comment) { FactoryBot.build(:comment, user: FactoryBot.create(:user), book: FactoryBot.create(:book, library: FactoryBot.create(:library), categories: categories)) }
 
     shared_examples 'unable to persist comment' do
       it 'can not be persisted' do 

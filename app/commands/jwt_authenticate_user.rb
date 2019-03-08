@@ -16,7 +16,11 @@ class JWTAuthenticateUser
   
     def user
       user = User.find_by_username(username)
-      return user if user && user.valid_password?(password)
+      
+      if user && user.valid_password?(password)
+          return user if user.active
+          raise(API::ExceptionHandler::InactiveAccount, APIMessages.account_not_active)
+      end
   
       raise(API::ExceptionHandler::AuthenticationError, APIMessages.invalid_credentials)
     end

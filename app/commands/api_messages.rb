@@ -6,6 +6,10 @@ class APIMessages
     def self.invalid_credentials
       'Invalid credentials'
     end
+
+    def self.account_not_active
+      'Account not active'
+    end
   
     def self.invalid_token
       'Invalid token'

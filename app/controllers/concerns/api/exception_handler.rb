@@ -3,6 +3,7 @@ module API::ExceptionHandler
   
     # Define custom error subclasses - rescue catches `StandardErrors`
     class AuthenticationError < StandardError; end
+    class InactiveAccount < StandardError; end
     class MissingToken < StandardError; end
     class InvalidToken < StandardError; end
   
@@ -10,6 +11,7 @@ module API::ExceptionHandler
       # Define custom handlers
       rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
       rescue_from API::ExceptionHandler::AuthenticationError, with: :unauthorized_request
+      rescue_from API::ExceptionHandler::InactiveAccount, with: :unauthorized_request
       rescue_from API::ExceptionHandler::MissingToken, with: :four_twenty_two
       rescue_from API::ExceptionHandler::InvalidToken, with: :four_twenty_two
   
