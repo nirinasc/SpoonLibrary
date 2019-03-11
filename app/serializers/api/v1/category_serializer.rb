@@ -1,5 +1,6 @@
-module class API::V1
+module API::V1
+  # V1 API Category Model Serializer
   class CategorySerializer < ActiveModel::Serializer
-    attributes :id
+    attributes :id, :name, :description
   end
 end

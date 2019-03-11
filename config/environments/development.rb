@@ -64,6 +64,7 @@ Rails.application.configure do
     host: 'localhost', 
     port: 3000 
   }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :user_name => 'd43090ef39c998',
@@ -73,5 +74,20 @@ Rails.application.configure do
     :port => '2525',
     :authentication => :cram_md5
   }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.sentry = false
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.growl = false
+    Bullet.rails_logger = true
+    Bullet.honeybadger = false
+    Bullet.bugsnag = false
+    Bullet.airbrake = false
+    Bullet.rollbar = false
+    Bullet.add_footer = true
+  end
   
 end
