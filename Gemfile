@@ -80,7 +80,9 @@ gem 'rubocop', require: false
 
 gem 'rack-cors'
 
-gem 'rswag'
+gem 'rspec-rails-swagger'
+
+gem 'swagger_ui_engine'
 
 
 group :development, :test do

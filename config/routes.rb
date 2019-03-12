@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
   ActiveAdmin.routes(self)
   devise_for :users,
              skip: :registrations,
@@ -46,6 +44,8 @@ Rails.application.routes.draw do
       post '/logs/:book_id/loans', to: 'logs#create_loan', as: 'loan_create'
     end
   end
+
+  mount SwaggerUiEngine::Engine, at: "/"
   
   root to: 'home#index'
   

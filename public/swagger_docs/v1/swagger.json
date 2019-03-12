@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/auth/login": {
+      "parameters": [
+        {
+          "name": "credentials",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": {
+                "auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NTI0ODg4Mjd9.bVP5HG_95nFeKd--OEUgZys5H2WjeGIeilQumnIWdzM"
+              }
+            },
+            "description": "success authentication"
+          },
+          "401": {
+            "examples": {
+              "application/json": {
+                "message": "Account not active"
+              }
+            },
+            "description": "unauthorized user"
+          },
+          "400": {
+            "examples": {
+              "application/json": {
+                "message": "Invalid credentials"
+              }
+            },
+            "description": "bad request"
+          }
+        },
+        "summary": "authenticate a user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  }
+}
