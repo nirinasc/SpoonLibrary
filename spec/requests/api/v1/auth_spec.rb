@@ -1,12 +1,11 @@
-##
 # @author nirina
 require 'swagger_helper'
 
-# V1 API AuthController Requests Test Spec
+# API V1 AuthController Requests Test Spec
 # Generate Swagger json doc
 # @see https://github.com/drewish/rspec-rails-swagger
 RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
-  # V1 API auth login path
+  # Auth login path resource path
   path '/api/auth/login' do
     # required body parameter Schema
     parameter :credentials, in: :body, required: true, schema: {
@@ -17,7 +16,7 @@ RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
       }
     }
 
-    # POST /api/auth/login Request
+    # POST /api/auth/login request
     post(summary: 'authenticate a user') do
       consumes 'application/json'
       produces 'application/json'
@@ -32,6 +31,7 @@ RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
             username: active_user.username, password: active_user.password
           }
         end
+
         # Expect response to include auth token
         it 'returns an authentication token' do
           expect(json['auth_token']).not_to be_nil
@@ -48,6 +48,7 @@ RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
             username: nonactive_user.username, password: nonactive_user.password
           }
         end
+
         # Expect response to include Account not active message
         it 'returns a non active account message' do
           expect(json['message']).to match(/Account not active/)
@@ -62,6 +63,7 @@ RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
             username: 'nonexistantusername', password: 'nonexistantpassword'
           }
         end
+
         # Expect response to include Invalid credentials message
         it 'returns an invalid credentials message' do
           expect(json['message']).to match(/Invalid credentials/)

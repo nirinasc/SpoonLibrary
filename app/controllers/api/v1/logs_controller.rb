@@ -14,7 +14,7 @@ module API::V1
     def loans
       q = Log.book_loan.includes(:book).where(user: current_user).ransack(params[:q])
       loans = q.result.paginate(page: params[:page], per_page: 20).order(id: :desc)
-      render json: loans, book_loan: true, status: :success
+      render json: loans, book_loan: true, status: :ok
     end
 
     # Retrieve current user book returns collection
@@ -26,7 +26,7 @@ module API::V1
     def returns
       q = Log.book_return.includes(:book).where(user: current_user).ransack(params[:q])
       returns = q.result.paginate(page: params[:page], per_page: 20).order(id: :desc)
-      render json: returns, book_return: true, status: :success
+      render json: returns, book_return: true, status: :ok
     end
 
     # Create a loan for the book with id :book_id
@@ -39,7 +39,7 @@ module API::V1
       book = Book.find(params[:book_id])
       book_loan = Log.create!(user: current_user, book: book, classification: Log.classifications[:book_loan],
                               date: DateTime.now, due_date: 3.weeks.from_now)
-      render json: book_loan, book_loan: true, status: :success
+      render json: book_loan, book_loan: true, status: :created
     end
 
     # Create a return of the loan with id :loan_id (log with id eq to :loan_id)
@@ -51,7 +51,7 @@ module API::V1
       loan = Log.find(params[:loan_id])
       book_return = Log.create!(user: current_user, book: loan.book, loan: loan,
                                 classification: Log.classifications[:book_return], date: DateTime.now)
-      render json: book_return, book_return: true, status: :success
+      render json: book_return, book_return: true, status: :created
     end
   end
 end

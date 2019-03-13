@@ -15,7 +15,7 @@ module API::V1
     def index
       # retrieve comments from db, including the user
       comments = @book.comments.includes(:user).order(id: :desc)
-      render json: comments, status: :success
+      render json: comments, status: :ok
     end
 
     # Create a new comment of book :book_id
@@ -30,7 +30,7 @@ module API::V1
       new_record = Comment.create!(user: current_user, book: @book, content: comment_params[:content])
       # render the recent created comment
       comment = Comment.includes(:user).find(new_record.id)
-      render json: comment, status: :success
+      render json: comment, status: :created
     end
 
     private

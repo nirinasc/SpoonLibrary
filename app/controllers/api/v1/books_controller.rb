@@ -11,9 +11,9 @@ module API::V1
     # @see https://github.com/activerecord-hackery/ransack
     # @returns [ActionDispatch::Response] JSON representation of the books list
     def index
-      q = Book.available.ransack(params[:q])
+      q = Book.ransack(params[:q])
       books = q.result.paginate(page: params[:page], per_page: 20).order(id: :desc)
-      render json: books, status: :success
+      render json: books, status: :ok
     end
 
     # Retrive a book by its id
@@ -23,7 +23,7 @@ module API::V1
     # @return [ActionDispatch::Response] JSON with :not_found status code if the book does not exists
     def show
       book = Book.includes(:library, :categories).find(params[:id])
-      render json: book, library: true, categories: true, status: :success
+      render json: book, library: true, categories: true, status: :ok
     end
   end
 end
