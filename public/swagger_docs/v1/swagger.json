@@ -1,0 +1,693 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/auth/login": {
+      "parameters": [
+        {
+          "name": "credentials",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "post": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": {
+                "auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NTI1NjE4NDV9.SwoHV8XjJqmclfYr4Jq_n2rSDQU_dRuiXe3i8iqso18"
+              }
+            },
+            "description": "success authentication"
+          },
+          "401": {
+            "examples": {
+              "application/json": {
+                "message": "Account not active"
+              }
+            },
+            "description": "unauthorized user"
+          },
+          "400": {
+            "examples": {
+              "application/json": {
+                "message": "Invalid credentials"
+              }
+            },
+            "description": "bad request"
+          }
+        },
+        "summary": "authenticate a user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/books": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": [
+                {
+                  "id": 150,
+                  "name": "book-29",
+                  "isbn": "599209654-X",
+                  "author": "",
+                  "description": "Swarthy charnel amorphous decadent lurk.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 231,
+                  "format": "paper",
+                  "publisher": "Open Court Publishing Company",
+                  "pub_date": "2019-01-01",
+                  "language": "french",
+                  "available": false,
+                  "created_at": "2019-03-13T11:10:46.446Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 149,
+                  "name": "book-28",
+                  "isbn": "350357047-0",
+                  "author": "",
+                  "description": "Cyclopean effulgence lurk foetid shunned unnamable gibbering eldritch noisome.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 196,
+                  "format": "paper",
+                  "publisher": "University of Michigan Press",
+                  "pub_date": "2018-08-12",
+                  "language": "french",
+                  "available": true,
+                  "created_at": "2019-03-13T11:10:46.442Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 148,
+                  "name": "book-27",
+                  "isbn": "311126669-9",
+                  "author": "",
+                  "description": "Stench fainted tentacles singular eldritch lurk accursed.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 641,
+                  "format": "paper",
+                  "publisher": "Manor House Publishing",
+                  "pub_date": "2018-06-30",
+                  "language": "english",
+                  "available": false,
+                  "created_at": "2019-03-13T11:10:46.439Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 147,
+                  "name": "book-26",
+                  "isbn": "716366415-X",
+                  "author": "",
+                  "description": "Fungus blasphemous comprehension manuscript squamous.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 409,
+                  "format": "paper",
+                  "publisher": "Matthias Media",
+                  "pub_date": "2017-08-07",
+                  "language": "french",
+                  "available": true,
+                  "created_at": "2019-03-13T11:10:46.435Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 146,
+                  "name": "book-25",
+                  "isbn": "481696551-3",
+                  "author": "",
+                  "description": "Loathsome foetid iridescence stygian unmentionable.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 964,
+                  "format": "paper",
+                  "publisher": "Manor House Publishing",
+                  "pub_date": "2019-02-28",
+                  "language": "french",
+                  "available": true,
+                  "created_at": "2019-03-13T11:10:46.431Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 145,
+                  "name": "book-24",
+                  "isbn": "916281053-7",
+                  "author": "",
+                  "description": "Unmentionable unutterable gibbous abnormal gibbering manuscript non-euclidean furtive.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 602,
+                  "format": "paper",
+                  "publisher": "Eerdmans Publishing",
+                  "pub_date": "2018-09-19",
+                  "language": "french",
+                  "available": false,
+                  "created_at": "2019-03-13T11:10:46.427Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 144,
+                  "name": "book-23",
+                  "isbn": "707396527-4",
+                  "author": "",
+                  "description": "Eldritch fainted abnormal lurk amorphous.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 129,
+                  "format": "paper",
+                  "publisher": "Carnegie Mellon University Press",
+                  "pub_date": "2018-09-14",
+                  "language": "french",
+                  "available": true,
+                  "created_at": "2019-03-13T11:10:46.424Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 143,
+                  "name": "book-22",
+                  "isbn": "473616298-8",
+                  "author": "",
+                  "description": "Lurk gambrel madness stench.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 473,
+                  "format": "paper",
+                  "publisher": "G-Unit Books",
+                  "pub_date": "2018-06-24",
+                  "language": "french",
+                  "available": false,
+                  "created_at": "2019-03-13T11:10:46.420Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 142,
+                  "name": "book-21",
+                  "isbn": "263579758-7",
+                  "author": "",
+                  "description": "Nameless decadent gibbous dank cat antiquarian tentacles swarthy fungus.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 599,
+                  "format": "paper",
+                  "publisher": "Marion Boyars Publishers",
+                  "pub_date": "2017-07-21",
+                  "language": "french",
+                  "available": false,
+                  "created_at": "2019-03-13T11:10:46.416Z",
+                  "comments_count": 0
+                },
+                {
+                  "id": 141,
+                  "name": "book-20",
+                  "isbn": "979023279-9",
+                  "author": "",
+                  "description": "Swarthy tentacles gibbering antediluvian lurk daemoniac cat squamous.",
+                  "cover_image": {
+                    "url": null,
+                    "thumbnail": {
+                      "url": null
+                    },
+                    "medium": {
+                      "url": null
+                    }
+                  },
+                  "number_of_pages": 972,
+                  "format": "paper",
+                  "publisher": "Shuter & Shooter Publishers",
+                  "pub_date": "2019-01-22",
+                  "language": "english",
+                  "available": false,
+                  "created_at": "2019-03-13T11:10:46.412Z",
+                  "comments_count": 0
+                }
+              ]
+            },
+            "description": "successful"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "q[name_cont]",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "q[categories_id_eq]",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "q[library_id_eq]",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "summary": "books list",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/books/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": {
+                "id": 210,
+                "name": "book-29",
+                "isbn": "415795737-7",
+                "author": "",
+                "description": "Daemoniac cyclopean charnel accursed tentacles.",
+                "cover_image": {
+                  "url": null,
+                  "thumbnail": {
+                    "url": null
+                  },
+                  "medium": {
+                    "url": null
+                  }
+                },
+                "number_of_pages": 158,
+                "format": "paper",
+                "publisher": "Central European University Press",
+                "pub_date": "2018-06-09",
+                "language": "english",
+                "available": true,
+                "created_at": "2019-03-13T11:10:46.722Z",
+                "comments_count": 0,
+                "library": {
+                  "id": 14,
+                  "name": "library-1"
+                },
+                "categories": [
+                  {
+                    "id": 21,
+                    "name": "category-2"
+                  }
+                ]
+              }
+            },
+            "description": "successful"
+          },
+          "404": {
+            "examples": {
+              "application/json": {
+                "message": "Couldn't find Book with 'id'=999999999999999999"
+              }
+            },
+            "description": "404 Not Found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "show book detail",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/categories": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": [
+                {
+                  "id": 36,
+                  "name": "category-1",
+                  "description": "Foetid cat gambrel unmentionable indescribable."
+                }
+              ]
+            },
+            "description": "successful"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "q[name_cont]",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "summary": "categories list",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/books/{book_id}/comments": {
+      "parameters": [
+        {
+          "name": "book_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "summary": "book comments list",
+        "produces": [
+          "application/json"
+        ]
+      },
+      "post": {
+        "responses": {
+          "201": {
+            "description": "comment created"
+          },
+          "422": {
+            "description": "content empty or too short"
+          }
+        },
+        "parameters": [
+          {
+            "name": "comment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "summary": "create comment",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/libraries": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": [
+                {
+                  "id": 32,
+                  "name": "library-1",
+                  "country_code": "KN",
+                  "city": "Erdmanmouth",
+                  "address": "871 Hermiston Groves",
+                  "zip_code": "33667-5899",
+                  "phone": "1-734-691-5149"
+                }
+              ]
+            },
+            "description": "successful"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "q[name_cont]",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "summary": "libraries list",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/logs/loans": {
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "parameters": [
+          {
+            "name": "q[returned_eq]",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "summary": "book loans list",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/logs/returns": {
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "parameters": [
+          {
+            "name": "q[book_id_eq]",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "q[loan_id_eq]",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "summary": "book returns list",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/logs/{loan_id}/returns": {
+      "parameters": [
+        {
+          "name": "loan_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string"
+        }
+      ],
+      "post": {
+        "responses": {
+          "201": {
+            "description": "successful"
+          },
+          "422": {
+            "description": "book loan is not valid"
+          },
+          "404": {
+            "description": "book loan does not exists"
+          }
+        },
+        "summary": "return a book"
+      }
+    },
+    "/api/logs/{book_id}/loans": {
+      "parameters": [
+        {
+          "name": "book_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string"
+        }
+      ],
+      "post": {
+        "responses": {
+          "201": {
+            "description": "successful"
+          },
+          "422": {
+            "description": "book is not available"
+          },
+          "404": {
+            "description": "book does not exists"
+          }
+        },
+        "summary": "loan a book"
+      }
+    },
+    "/api/users/me": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": {
+                "id": 34,
+                "firstname": "Corie",
+                "lastname": "Yundt",
+                "username": "user63",
+                "email": "juttadenesik@blicknienow.io",
+                "role": "admin",
+                "country_code": "AF",
+                "city": "Lake Kathistad",
+                "address": "296 Brown Path",
+                "zip_code": "69863-6921",
+                "phone": "1-571-097-2132",
+                "created_at": "2019-03-13T11:10:48.161Z"
+              }
+            },
+            "description": "successful"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "summary": "retrieve current user info",
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  }
+}

@@ -47,7 +47,7 @@ class StoreController < ApplicationController
     end
 
     def returns
-        @q = Log.book_return.includes(:book,:loan).where(user: current_user).ransack(params[:q])
+        @q = Log.book_return.includes(:book).where(user: current_user).ransack(params[:q])
         @returns = @q.result.paginate(:page => params[:page], :per_page => 20).order(id: :desc) 
     end
 
