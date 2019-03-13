@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
-
   layout :set_layout
 
   before_action :configure_sign_up_params, only: [:create]
@@ -14,11 +13,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-     super do |resource|
-       if resource.persisted?
-         AuthMailer.request_approval(resource).deliver_later 
-       end
-     end
+    super do |resource|
+      AuthMailer.request_approval(resource).deliver_later if resource.persisted?
+    end
   end
 
   # GET /resource/edit
@@ -49,33 +46,32 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :firstname, :lastname, :country_code, :city, :address, :zip_code, :phone])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email firstname lastname country_code city address zip_code phone])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :firstname, :lastname, :country_code, :city, :address, :zip_code, :phone])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[email firstname lastname country_code city address zip_code phone])
   end
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     edit_user_registration_path
   end
 
   # The path used after sign up.
-  #def after_sign_up_path_for(resource)
-    #super(resource)
-  #end
+  # def after_sign_up_path_for(resource)
+  # super(resource)
+  # end
 
   # The path used after sign up for inactive accounts.
-  def after_inactive_sign_up_path_for(resource)
-     #super(resource)
-     notifications_success_signup_path
+  def after_inactive_sign_up_path_for(_resource)
+    # super(resource)
+    notifications_success_signup_path
   end
 
   private
 
   def set_layout
-    ( action_name == 'edit' || action_name == 'update' ) ? 'store' : 'auth'
+    action_name == 'edit' || action_name == 'update' ? 'store' : 'auth'
   end
-
 end

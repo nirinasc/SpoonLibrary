@@ -25,7 +25,7 @@ RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
       response(200, description: 'success authentication') do
         # create an active user
         let!(:active_user) { FactoryBot.create(:user, active: true) }
-        # define :credentials params by passing valid :active_user username and password 
+        # define :credentials params by passing valid :active_user username and password
         let(:credentials) do
           {
             username: active_user.username, password: active_user.password

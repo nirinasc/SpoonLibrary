@@ -104,7 +104,7 @@ RSpec.describe 'api/v1/logs', type: :request do
         end
         let(:loan_id) { Log.book_loan.last.id }
       end
-      # Return response with 404 status code if the loan doesn't exists 
+      # Return response with 404 status code if the loan doesn't exists
       response(404, description: 'book loan does not exists') do
         let(:loan_id) { 999_999_999 }
       end
@@ -135,7 +135,7 @@ RSpec.describe 'api/v1/logs', type: :request do
       end
       # Return response with 404 status code if the book doesn't exists
       response(404, description: 'book does not exists') do
-        let(:book_id) { 999_999_999}
+        let(:book_id) { 999_999_999 }
       end
     end
   end
