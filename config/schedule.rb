@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, at: '12pm' do
-    runner "Reminder.remind_books_return"
+  runner 'Reminder.remind_books_return'
 end

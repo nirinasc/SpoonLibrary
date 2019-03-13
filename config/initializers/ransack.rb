@@ -6,5 +6,4 @@
 # See wiki https://github.com/activerecord-hackery/ransack/wiki/Custom-Predicates
 
 Ransack.configure do |config|
-  
 end

@@ -60,19 +60,19 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Mail Server Config
-  config.action_mailer.default_url_options = { 
-    host: 'localhost', 
-    port: 3000 
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    port: 3000
   }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => 'd43090ef39c998',
-    :password => '7fd676a83e941b',
-    :address => 'smtp.mailtrap.io',
-    :domain => 'smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+    user_name: 'd43090ef39c998',
+    password: '7fd676a83e941b',
+    address: 'smtp.mailtrap.io',
+    domain: 'smtp.mailtrap.io',
+    port: '2525',
+    authentication: :cram_md5
   }
 
   config.after_initialize do
@@ -89,5 +89,4 @@ Rails.application.configure do
     Bullet.rollbar = false
     Bullet.add_footer = true
   end
-  
 end

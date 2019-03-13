@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Spoon Library"
+  config.site_title = 'Spoon Library'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -256,7 +256,7 @@ ActiveAdmin.setup do |config|
   # Pagination is enabled by default for all resources.
   # You can control the default per page count for all resources here.
   #
-   config.default_per_page = [10, 50, 100]
+  config.default_per_page = [10, 50, 100]
   #
   # You can control the max per page count too.
   #
@@ -295,7 +295,7 @@ end
 ActiveAdmin::ResourceController.class_eval do
   def find_resource
     if scoped_collection.is_a? FriendlyId
-      scoped_collection.where(slug: params[:id]).first! 
+      scoped_collection.where(slug: params[:id]).first!
     else
       scoped_collection.where(id: params[:id]).first!
     end
