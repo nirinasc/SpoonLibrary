@@ -8,23 +8,25 @@ RSpec.describe JWTAuthenticateUser do
 
   # Test suite for AuthenticateUser#call
   describe '#call' do
-    # return token when valid request
+    # When credentials are valid
     context 'when valid credentials' do
+      # return a token when the user is active
       context 'when user is active' do
         it 'returns an auth token' do
-            token = described_class.call(active_user.username, active_user.password)
-            expect(token).not_to be_nil
-          end
+          token = described_class.call(active_user.username, active_user.password)
+          expect(token).not_to be_nil
+        end
       end
-      
+
+      # return an error message when the user is not active
       context 'when user is not active' do
         it 'raise an authentication error with inactive account message' do
-            expect { described_class.call(nonactive_user.username, nonactive_user.password) }
-               .to raise_error(
-                API::JWTExceptionHandler::InactiveAccount,
-                /Account not active/
-              )
-          end 
+          expect { described_class.call(nonactive_user.username, nonactive_user.password) }
+            .to raise_error(
+              API::JWTExceptionHandler::InactiveAccount,
+              /Account not active/
+            )
+        end
       end
     end
 

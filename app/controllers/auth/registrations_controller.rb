@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Devise Registrations Controller Override
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout :set_layout
 
@@ -12,11 +13,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super do |resource|
-      AuthMailer.request_approval(resource).deliver_later if resource.persisted?
-    end
-  end
+  # def create
+  #   super do |resource|
+  #     AuthMailer.request_approval(resource).deliver_later if resource.persisted?
+  #   end
+  # end
 
   # GET /resource/edit
   # def edit
@@ -59,9 +60,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  # super(resource)
-  # end
+  def after_sign_up_path_for(_resource)
+    # super(resource)
+    store_index_path
+  end
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(_resource)

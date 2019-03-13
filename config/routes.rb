@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     end
   end
 
-  mount SwaggerUiEngine::Engine, at: "/"
+  mount SwaggerUiEngine::Engine, at: "/docs"
   
   root to: 'home#index'
   
