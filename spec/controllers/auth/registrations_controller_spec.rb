@@ -53,7 +53,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
 
       # expect response to send welcome flash message
-      it 'generate success non active account registration notice' do
+      it 'generate welcome flash message' do
         post :create, params: { user: FactoryBot.attributes_for(:user) }
         expect(flash[:notice]).to eq(I18n.t('devise.registrations.signed_up'))
       end
