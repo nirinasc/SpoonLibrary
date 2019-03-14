@@ -59,18 +59,23 @@ class StoreController < ApplicationController
     end
   end
 
-
   # POST '/store/:id/loan'
   # Create a loan for the book with id :id
   # Redirect to #show with success message if the book is successfully borrowed
   # Redirect to #loans with error message if the book is not available
   # @return [ActionView::Renderer] default 404 page if the book does not exists
   def loan
-    # retrieve the book objet to be loaned 
+    # retrieve the book objet to be loaned
     @book = Book.friendly.find(params[:id])
     # create a new book loan instance by passing the book
-    @book_loan = Log.new(user: current_user, book: @book, classification: Log.classifications[:book_loan], date: DateTime.now, due_date: 3.weeks.from_now)
-    #check if the book loan attributes are valid
+    @book_loan = Log.new(
+      user: current_user,
+      book: @book,
+      classification: Log.classifications[:book_loan],
+      date: DateTime.now,
+      due_date: 3.weeks.from_now
+    )
+    # check if the book loan attributes are valid
     if @book_loan.valid?
       # save the book loan in db
       @book_loan.save
@@ -115,7 +120,13 @@ class StoreController < ApplicationController
     # retrieve the refered loan in which a book need to be returned
     @loan = Log.find(params[:loan])
     # create a new book return object by assigning the loan
-    @book_return = Log.new(user: current_user, book: @loan.book, loan: @loan, classification: Log.classifications[:book_return], date: DateTime.now)
+    @book_return = Log.new(
+      user: current_user,
+      book: @loan.book,
+      loan: @loan,
+      classification: Log.classifications[:book_return],
+      date: DateTime.now
+    )
     # check if the book return is valid
     if @book_return.valid?
       # save the book return
