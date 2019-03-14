@@ -82,6 +82,7 @@ RSpec.describe 'api/v1/logs', type: :request do
     end
   end
 
+  # book_return logs create resource path
   path '/api/logs/{loan_id}/returns' do
     # loan_id path paramater def
     parameter 'loan_id', in: :path, type: :string
@@ -111,6 +112,7 @@ RSpec.describe 'api/v1/logs', type: :request do
     end
   end
 
+  # book_loan logs create resource path
   path '/api/logs/{book_id}/loans' do
     # book_id path parameter def
     parameter 'book_id', in: :path, type: :string
