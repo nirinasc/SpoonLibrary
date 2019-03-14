@@ -27,7 +27,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
     end
 
-    # when the user is not yet logged
+    # when the user is logged
     context 'when the user is authenticated' do
       before do
         sign_in user
@@ -103,7 +103,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
     end
 
-    # when the user is not yet logged
+    # when the user is logged
     context 'when the user is authenticated' do
       before do
         sign_in user

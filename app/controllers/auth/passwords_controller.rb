@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# Devise PasswordsController Controller Override
 class Auth::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new
