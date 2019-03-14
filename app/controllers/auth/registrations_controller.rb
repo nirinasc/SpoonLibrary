@@ -71,6 +71,16 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     notifications_success_signup_path
   end
 
+  protected
+
+  # @override
+  # Allows user to update registration information without password unless password is present.
+  def update_resource(resource, params)
+    return resource.update_without_password(params.except('current_password')) unless params['password']&.present?
+
+    super
+  end
+
   private
 
   def set_layout

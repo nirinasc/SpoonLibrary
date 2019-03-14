@@ -1,41 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe Log, type: :model do
-
   context 'Validation' do
-    subject(:user) { FactoryBot.create(:user)}
-    subject(:categories) {
+    subject(:user) { FactoryBot.create(:user) }
+    subject(:categories) do
       categories = []
       3.times { categories << FactoryBot.create(:category) }
       return categories
-    }
+    end
     subject(:book) { FactoryBot.create(:book, library: FactoryBot.create(:library), categories: categories) }
     subject(:book_loan) { FactoryBot.build(:book_loan, user: user, book: book) }
     subject(:book_return) { FactoryBot.build(:book_return, user: user, book: book, loan: book_loan) }
 
     shared_examples 'unable to persist book loan log' do
-      it 'can not be persisted' do 
+      it 'can not be persisted' do
         book_loan.save
         expect(book_loan).to_not be_persisted
       end
     end
-    
+
     shared_examples 'able to persist book loan log' do
-      it 'can be persisted' do 
+      it 'can be persisted' do
         book_loan.save
         expect(book_loan).to be_persisted
       end
     end
 
     shared_examples 'unable to persist book return log' do
-      it 'can not be persisted' do 
+      it 'can not be persisted' do
         book_return.save
         expect(book_return).to_not be_persisted
       end
     end
-    
+
     shared_examples 'able to persist book return log' do
-      it 'can be persisted' do 
+      it 'can be persisted' do
         book_return.save
         expect(book_return).to be_persisted
       end
@@ -53,27 +52,27 @@ RSpec.describe Log, type: :model do
     context 'when all book return attributes are good' do
       include_examples 'able to persist book return log'
     end
-    
+
     ## user attribute validation
     context 'when user is not associated' do
       before do
         book_loan.user = nil
         book_loan.valid?
-      end 
+      end
       it 'get a user attribute missing error' do
-        expect(book_loan.errors.details[:user]).to include({:error=>:blank})
+        expect(book_loan.errors.details[:user]).to include(error: :blank)
       end
       include_examples 'unable to persist book loan log'
     end
-  
+
     ## book attribute validation
     context 'when book is not associated' do
       before do
         book_loan.book = nil
         book_loan.valid?
-      end 
+      end
       it 'get a book attribute missing error' do
-        expect(book_loan.errors.details[:book]).to include({:error=>:blank})
+        expect(book_loan.errors.details[:book]).to include(error: :blank)
       end
       include_examples 'unable to persist book loan log'
     end
@@ -81,7 +80,7 @@ RSpec.describe Log, type: :model do
     ## classification attribute validation
     context 'when classification value is not valid' do
       it 'get classification not valid error' do
-        expect{ book_loan.classification = 2 }.to raise_error(ArgumentError)
+        expect { book_loan.classification = 2 }.to raise_error(ArgumentError)
       end
     end
 
@@ -92,7 +91,7 @@ RSpec.describe Log, type: :model do
         book_loan.valid?
       end
       it 'get date attribute invalid error' do
-        expect(book_loan.errors.details[:date]).to include({:error=>:blank})   
+        expect(book_loan.errors.details[:date]).to include(error: :blank)
       end
       include_examples 'unable to persist book loan log'
     end
@@ -104,7 +103,7 @@ RSpec.describe Log, type: :model do
         book_loan.valid?
       end
       it 'get date attribute invalid error' do
-        expect(book_loan.errors.details[:date]).to include({:error=>:invalid_datetime, :restriction=>nil})
+        expect(book_loan.errors.details[:date]).to include(error: :invalid_datetime, restriction: nil)
       end
       include_examples 'unable to persist book loan log'
     end
@@ -116,7 +115,7 @@ RSpec.describe Log, type: :model do
         book_loan.valid?
       end
       it 'get due date attribute invalid error' do
-        expect(book_loan.errors.details[:due_date]).to include({:error=>:blank})   
+        expect(book_loan.errors.details[:due_date]).to include(error: :blank)
       end
       include_examples 'unable to persist book loan log'
     end
@@ -127,7 +126,7 @@ RSpec.describe Log, type: :model do
         book_loan.valid?
       end
       it 'get due date attribute invalid error' do
-        expect(book_loan.errors.details[:due_date]).to include({:error=>:invalid_datetime, :restriction=>nil})
+        expect(book_loan.errors.details[:due_date]).to include(error: :invalid_datetime, restriction: nil)
       end
       include_examples 'unable to persist book loan log'
     end
@@ -138,31 +137,31 @@ RSpec.describe Log, type: :model do
         book_loan.valid?
       end
       it 'get due date attribute after restriction error' do
-        expect(book_loan.errors.details[:due_date]).to include({:error=>:after, :restriction=> book_loan.date })
+        expect(book_loan.errors.details[:due_date]).to include(error: :after, restriction: book_loan.date)
       end
       include_examples 'unable to persist book loan log'
     end
 
-    ##book_loan loan attribute validation
+    # #book_loan loan attribute validation
     context 'when another loan is associated to a book_loan' do
-      before do 
-        book_loan.loan = FactoryBot.build(:book_loan, user: user, book: book)  
+      before do
+        book_loan.loan = FactoryBot.build(:book_loan, user: user, book: book)
         book_loan.valid?
       end
       it 'get loan attribute presence error' do
-        expect(book_loan.errors.details[:loan]).to include({:error=>:present})
+        expect(book_loan.errors.details[:loan]).to include(error: :present)
       end
       include_examples 'unable to persist book loan log'
     end
 
-    ##book_return loan attribute validation
+    # #book_return loan attribute validation
     context 'when a loan is not associated to return_loan' do
-      before do 
-        book_return.loan = nil  
+      before do
+        book_return.loan = nil
         book_return.valid?
       end
       it 'get loan attribute missing error' do
-        expect(book_return.errors.details[:loan]).to include({:error=>:blank})
+        expect(book_return.errors.details[:loan]).to include(error: :blank)
       end
       include_examples 'unable to persist book return log'
     end
@@ -174,7 +173,7 @@ RSpec.describe Log, type: :model do
         book_return.valid?
       end
       it 'get date attribute invalid error' do
-        expect(book_return.errors.details[:date]).to include({:error=>:invalid_datetime, :restriction=>nil})
+        expect(book_return.errors.details[:date]).to include(error: :invalid_datetime, restriction: nil)
       end
       include_examples 'unable to persist book return log'
     end
@@ -187,7 +186,7 @@ RSpec.describe Log, type: :model do
       end
 
       it 'get date attribute after loan date restriction error' do
-        expect(book_return.errors.details[:date]).to include({:error=>:after, :restriction=> book_return.loan.date })
+        expect(book_return.errors.details[:date]).to include(error: :after, restriction: book_return.loan.date)
       end
       include_examples 'unable to persist book return log'
     end
@@ -200,6 +199,5 @@ RSpec.describe Log, type: :model do
       end
       include_examples 'able to persist book return log'
     end
-
   end
 end
