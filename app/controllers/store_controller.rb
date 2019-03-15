@@ -1,66 +1,38 @@
+# @author nirina
+# StoreController Class
 class StoreController < ApplicationController
+  # deny non authenticated user to enter served pages
+  before_action :authenticate_user!
+  before_action :set_current_user
 
-    before_action :authenticate_user!
-    
-    def index
-        qparams = params[:q].present? ? params[:q] : {} 
-        qparams.merge!({'library_id_eq' => params[:library]}) if params[:library].present?
-        @libraries = Library.all;
-        @q = Book.available.ransack(qparams)
-        @categories = Category.all
-        @books = @q.result.paginate(:page => params[:page], :per_page => 20).order(id: :desc)    
-    end
+  # GET /store/
+  # show list of all books
+  # filters can be applied, especially on categories an libraries
+  # @see https://github.com/activerecord-hackery/ransack
+  # @returns [ActionView::Renderer] view/store/index.html
+  def index
+    # prepare parameters filter
+    qparams = params[:q].present? ? params[:q] : {}
+    qparams['library_id_eq'] = params[:library] if params[:library].present?
+    # retrieve all libratries
+    @libraries = Library.all
+    # retrieve all books and apply filters
+    @q = Book.ransack(qparams)
+    # retrive all categories
+    @categories = Category.all
+    # apply pagination to book list
+    @books = @q.result.paginate(page: params[:page], per_page: 20).order(id: :desc)
+  end
 
-    def show
-        @book = Book.friendly.find(params[:id])
-        @comment = Comment.new
-    end
-
-    def comments_create
-        @book = Book.friendly.find(params[:id])
-        @comment = Comment.new({user: current_user, book: @book, content: params[:comment][:content]})
-
-        if @comment.valid?
-            @comment.save
-            redirect_to  store_show_path, notice: 'Your comment has been successfully added'
-        else
-            redirect_to  store_show_path, alert: @comment.errors.full_messages.first
-        end
-    
-    end
-
-    def loan
-        @book = Book.friendly.find(params[:id])
-        @book_loan = Log.new(user:current_user,book:@book,classification:Log.classifications[:book_loan],date:DateTime.now,due_date: 3.weeks.from_now);
-        
-        if @book_loan.valid?
-            @book_loan.save
-            redirect_to store_show_path, notice: 'You have successfully borrowed this book'
-        else
-            redirect_to store_show_path, alert: 'An error occurred during the process, please contact the administrator'
-        end
-    end
-
-    def loans
-        @q = Log.book_loan.includes(:book).where(user: current_user).ransack(params[:q])
-        @loans = @q.result.paginate(:page => params[:page], :per_page => 20).order(id: :desc) 
-    end
-
-    def returns
-        @q = Log.book_return.includes(:book).where(user: current_user).ransack(params[:q])
-        @returns = @q.result.paginate(:page => params[:page], :per_page => 20).order(id: :desc) 
-    end
-
-    def returning
-        @loan = Log.find(params[:loan])
-        @book_return = Log.new(user:current_user,book: @loan.book, loan: @loan,classification:Log.classifications[:book_return],date:DateTime.now)
-
-        if @book_return.valid?
-            @book_return.save
-            redirect_to store_returns_path, notice: 'You have successfully returned that book'
-        else
-            redirect_to store_loans_path, alert: @book_return.errors.full_messages.first
-        end
-    end
-    
+  # GET /store/:id (friendly Id)
+  # show book details (book with its comments)
+  # @see https://github.com/norman/friendly_id
+  # @returns [ActionView::Renderer] view/store/show.html
+  # @return [ActionView::Renderer] default 404 page if the book does not exists
+  def show
+    # retrieve the book with friendly :id
+    @book = Book.friendly.find(params[:id])
+    # create a blank comment
+    @comment = Comment.new
+  end
 end

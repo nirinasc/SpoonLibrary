@@ -4,7 +4,7 @@ require 'swagger_helper'
 # API V1 LibrariesController Requests Test Spec
 # Generate Swagger json doc
 # @see https://github.com/drewish/rspec-rails-swagger
-RSpec.describe 'API::V1::Libraries', type: :request, capture_examples: true  do
+RSpec.describe 'API::V1::Libraries', type: :request, capture_examples: true do
   # libraries resource path
   path '/api/libraries' do
     # Fill in the db with 5 libraries

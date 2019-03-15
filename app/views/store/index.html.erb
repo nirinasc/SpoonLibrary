@@ -43,6 +43,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-4">
+                        <%= f.label :available_eq, 'Availablity' %>
+                    </div>
+                    <div class="col-xs-8">
+                        <%= f.select :available_eq, [true, false], { include_blank: 'All' }, {:class => 'form-control'} %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4">
                         <%= f.label :name_cont, 'Name' %>
                     </div>
                     <div class="col-xs-8">

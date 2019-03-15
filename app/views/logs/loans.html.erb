@@ -23,7 +23,7 @@
                     <td><% if loan.returned %><button class="btn btn-small btn-primary">Yes</button><% else %><button class="btn btn-small btn-default">No</button><% end %></td>
                     <td>
                     <% if !loan.returned %>
-                        <%= form_for loan, url: store_return_path(loan), method: 'POST' do |f| %>
+                        <%= form_for loan, url: return_create_path(loan), method: 'POST' do |f| %>
                             <%= f.submit 'Return this book', class: ['btn btn-small btn-primary'] %>
                         <% end %> 
                     <% end %>

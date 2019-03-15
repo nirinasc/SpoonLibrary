@@ -29,7 +29,7 @@
           "200": {
             "examples": {
               "application/json": {
-                "auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NTI1NjE4NDV9.SwoHV8XjJqmclfYr4Jq_n2rSDQU_dRuiXe3i8iqso18"
+                "auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NTI1Njg2NjZ9.YyTEK_i4_cS-vGBxirxsJxWFd-SWZNyU35r1xBMBMVw"
               }
             },
             "description": "success authentication"
@@ -69,9 +69,9 @@
                 {
                   "id": 150,
                   "name": "book-29",
-                  "isbn": "599209654-X",
+                  "isbn": "535747307-2",
                   "author": "",
-                  "description": "Swarthy charnel amorphous decadent lurk.",
+                  "description": "Charnel fainted amorphous loathsome daemoniac noisome unutterable foetid.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -81,21 +81,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 231,
+                  "number_of_pages": 819,
                   "format": "paper",
-                  "publisher": "Open Court Publishing Company",
-                  "pub_date": "2019-01-01",
+                  "publisher": "Harlequin Enterprises Ltd",
+                  "pub_date": "2019-01-09",
                   "language": "french",
                   "available": false,
-                  "created_at": "2019-03-13T11:10:46.446Z",
+                  "created_at": "2019-03-13T13:04:27.168Z",
                   "comments_count": 0
                 },
                 {
                   "id": 149,
                   "name": "book-28",
-                  "isbn": "350357047-0",
+                  "isbn": "515281686-5",
                   "author": "",
-                  "description": "Cyclopean effulgence lurk foetid shunned unnamable gibbering eldritch noisome.",
+                  "description": "Tenebrous hideous amorphous cat foetid unnamable accursed immemorial swarthy.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -105,21 +105,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 196,
+                  "number_of_pages": 612,
                   "format": "paper",
-                  "publisher": "University of Michigan Press",
-                  "pub_date": "2018-08-12",
+                  "publisher": "Elsevier",
+                  "pub_date": "2018-08-15",
                   "language": "french",
                   "available": true,
-                  "created_at": "2019-03-13T11:10:46.442Z",
+                  "created_at": "2019-03-13T13:04:27.164Z",
                   "comments_count": 0
                 },
                 {
                   "id": 148,
                   "name": "book-27",
-                  "isbn": "311126669-9",
+                  "isbn": "147680235-1",
                   "author": "",
-                  "description": "Stench fainted tentacles singular eldritch lurk accursed.",
+                  "description": "Noisome tenebrous unutterable unmentionable fungus foetid.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -129,21 +129,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 641,
+                  "number_of_pages": 208,
                   "format": "paper",
-                  "publisher": "Manor House Publishing",
-                  "pub_date": "2018-06-30",
+                  "publisher": "Indiana University Press",
+                  "pub_date": "2018-10-04",
                   "language": "english",
                   "available": false,
-                  "created_at": "2019-03-13T11:10:46.439Z",
+                  "created_at": "2019-03-13T13:04:27.160Z",
                   "comments_count": 0
                 },
                 {
                   "id": 147,
                   "name": "book-26",
-                  "isbn": "716366415-X",
+                  "isbn": "008931360-7",
                   "author": "",
-                  "description": "Fungus blasphemous comprehension manuscript squamous.",
+                  "description": "Cyclopean antediluvian unmentionable accursed madness.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -153,21 +153,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 409,
+                  "number_of_pages": 852,
                   "format": "paper",
-                  "publisher": "Matthias Media",
-                  "pub_date": "2017-08-07",
-                  "language": "french",
-                  "available": true,
-                  "created_at": "2019-03-13T11:10:46.435Z",
+                  "publisher": "George Routledge & Sons",
+                  "pub_date": "2019-01-30",
+                  "language": "english",
+                  "available": false,
+                  "created_at": "2019-03-13T13:04:27.157Z",
                   "comments_count": 0
                 },
                 {
                   "id": 146,
                   "name": "book-25",
-                  "isbn": "481696551-3",
+                  "isbn": "353593265-3",
                   "author": "",
-                  "description": "Loathsome foetid iridescence stygian unmentionable.",
+                  "description": "Spectral mortal gibbering loathsome comprehension daemoniac eldritch foetid.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -177,21 +177,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 964,
+                  "number_of_pages": 792,
                   "format": "paper",
-                  "publisher": "Manor House Publishing",
-                  "pub_date": "2019-02-28",
+                  "publisher": "Breslov Research Institute",
+                  "pub_date": "2017-09-10",
                   "language": "french",
-                  "available": true,
-                  "created_at": "2019-03-13T11:10:46.431Z",
+                  "available": false,
+                  "created_at": "2019-03-13T13:04:27.153Z",
                   "comments_count": 0
                 },
                 {
                   "id": 145,
                   "name": "book-24",
-                  "isbn": "916281053-7",
+                  "isbn": "654739281-3",
                   "author": "",
-                  "description": "Unmentionable unutterable gibbous abnormal gibbering manuscript non-euclidean furtive.",
+                  "description": "Antiquarian dank blasphemous cyclopean mortal.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -201,21 +201,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 602,
+                  "number_of_pages": 811,
                   "format": "paper",
-                  "publisher": "Eerdmans Publishing",
-                  "pub_date": "2018-09-19",
-                  "language": "french",
+                  "publisher": "Apress",
+                  "pub_date": "2018-11-19",
+                  "language": "english",
                   "available": false,
-                  "created_at": "2019-03-13T11:10:46.427Z",
+                  "created_at": "2019-03-13T13:04:27.149Z",
                   "comments_count": 0
                 },
                 {
                   "id": 144,
                   "name": "book-23",
-                  "isbn": "707396527-4",
+                  "isbn": "008838941-3",
                   "author": "",
-                  "description": "Eldritch fainted abnormal lurk amorphous.",
+                  "description": "Decadent cyclopean unnamable tentacles.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -225,21 +225,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 129,
+                  "number_of_pages": 688,
                   "format": "paper",
-                  "publisher": "Carnegie Mellon University Press",
-                  "pub_date": "2018-09-14",
-                  "language": "french",
+                  "publisher": "Hackett Publishing Company",
+                  "pub_date": "2017-10-18",
+                  "language": "english",
                   "available": true,
-                  "created_at": "2019-03-13T11:10:46.424Z",
+                  "created_at": "2019-03-13T13:04:27.145Z",
                   "comments_count": 0
                 },
                 {
                   "id": 143,
                   "name": "book-22",
-                  "isbn": "473616298-8",
+                  "isbn": "010907985-X",
                   "author": "",
-                  "description": "Lurk gambrel madness stench.",
+                  "description": "Indescribable abnormal gibbous tenebrous amorphous stygian iridescence.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -249,21 +249,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 473,
+                  "number_of_pages": 816,
                   "format": "paper",
-                  "publisher": "G-Unit Books",
-                  "pub_date": "2018-06-24",
+                  "publisher": "Koren Publishers Jerusalem",
+                  "pub_date": "2019-03-05",
                   "language": "french",
-                  "available": false,
-                  "created_at": "2019-03-13T11:10:46.420Z",
+                  "available": true,
+                  "created_at": "2019-03-13T13:04:27.142Z",
                   "comments_count": 0
                 },
                 {
                   "id": 142,
                   "name": "book-21",
-                  "isbn": "263579758-7",
+                  "isbn": "884585749-2",
                   "author": "",
-                  "description": "Nameless decadent gibbous dank cat antiquarian tentacles swarthy fungus.",
+                  "description": "Unutterable decadent gambrel ululate furtive.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -273,21 +273,21 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 599,
+                  "number_of_pages": 631,
                   "format": "paper",
-                  "publisher": "Marion Boyars Publishers",
-                  "pub_date": "2017-07-21",
-                  "language": "french",
-                  "available": false,
-                  "created_at": "2019-03-13T11:10:46.416Z",
+                  "publisher": "Applewood Books",
+                  "pub_date": "2018-05-26",
+                  "language": "english",
+                  "available": true,
+                  "created_at": "2019-03-13T13:04:27.137Z",
                   "comments_count": 0
                 },
                 {
                   "id": 141,
                   "name": "book-20",
-                  "isbn": "979023279-9",
+                  "isbn": "280932274-0",
                   "author": "",
-                  "description": "Swarthy tentacles gibbering antediluvian lurk daemoniac cat squamous.",
+                  "description": "Stench blasphemous foetid stygian unmentionable non-euclidean spectral accursed.",
                   "cover_image": {
                     "url": null,
                     "thumbnail": {
@@ -297,13 +297,13 @@
                       "url": null
                     }
                   },
-                  "number_of_pages": 972,
+                  "number_of_pages": 421,
                   "format": "paper",
-                  "publisher": "Shuter & Shooter Publishers",
-                  "pub_date": "2019-01-22",
-                  "language": "english",
-                  "available": false,
-                  "created_at": "2019-03-13T11:10:46.412Z",
+                  "publisher": "Burns & Oates",
+                  "pub_date": "2017-09-05",
+                  "language": "french",
+                  "available": true,
+                  "created_at": "2019-03-13T13:04:27.133Z",
                   "comments_count": 0
                 }
               ]
@@ -347,9 +347,9 @@
               "application/json": {
                 "id": 210,
                 "name": "book-29",
-                "isbn": "415795737-7",
+                "isbn": "509535460-8",
                 "author": "",
-                "description": "Daemoniac cyclopean charnel accursed tentacles.",
+                "description": "Stench antiquarian dank unnamable eldritch nameless charnel manuscript.",
                 "cover_image": {
                   "url": null,
                   "thumbnail": {
@@ -359,13 +359,13 @@
                     "url": null
                   }
                 },
-                "number_of_pages": 158,
+                "number_of_pages": 721,
                 "format": "paper",
-                "publisher": "Central European University Press",
-                "pub_date": "2018-06-09",
-                "language": "english",
-                "available": true,
-                "created_at": "2019-03-13T11:10:46.722Z",
+                "publisher": "Charles Scribner's Sons",
+                "pub_date": "2017-10-29",
+                "language": "french",
+                "available": false,
+                "created_at": "2019-03-13T13:04:27.453Z",
                 "comments_count": 0,
                 "library": {
                   "id": 14,
@@ -418,7 +418,7 @@
                 {
                   "id": 36,
                   "name": "category-1",
-                  "description": "Foetid cat gambrel unmentionable indescribable."
+                  "description": "Fungus dank effulgence squamous foetid cat."
                 }
               ]
             },
@@ -507,11 +507,11 @@
                 {
                   "id": 32,
                   "name": "library-1",
-                  "country_code": "KN",
-                  "city": "Erdmanmouth",
-                  "address": "871 Hermiston Groves",
-                  "zip_code": "33667-5899",
-                  "phone": "1-734-691-5149"
+                  "country_code": "ST",
+                  "city": "Wayneville",
+                  "address": "35469 Cummerata Mount",
+                  "zip_code": "39354-8810",
+                  "phone": "307.608.4066 x26006"
                 }
               ]
             },
@@ -660,17 +660,17 @@
             "examples": {
               "application/json": {
                 "id": 34,
-                "firstname": "Corie",
-                "lastname": "Yundt",
-                "username": "user63",
-                "email": "juttadenesik@blicknienow.io",
+                "firstname": "Thanh",
+                "lastname": "Walter",
+                "username": "user53",
+                "email": "marshallarmstrong@braunwest.name",
                 "role": "admin",
-                "country_code": "AF",
-                "city": "Lake Kathistad",
-                "address": "296 Brown Path",
-                "zip_code": "69863-6921",
-                "phone": "1-571-097-2132",
-                "created_at": "2019-03-13T11:10:48.161Z"
+                "country_code": "CA",
+                "city": "West Birgitton",
+                "address": "852 Dallas Vista",
+                "zip_code": "43391-5769",
+                "phone": "276-172-1984",
+                "created_at": "2019-03-13T13:04:28.893Z"
               }
             },
             "description": "successful"

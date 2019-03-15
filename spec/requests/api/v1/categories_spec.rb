@@ -4,7 +4,7 @@ require 'swagger_helper'
 # API V1 categoriesController Requests Test Spec
 # Generate Swagger json doc
 # @see https://github.com/drewish/rspec-rails-swagger
-RSpec.describe 'API::V1::Categories', type: :request, capture_examples: true  do
+RSpec.describe 'API::V1::Categories', type: :request, capture_examples: true do
   # categories resource path
   path '/api/categories' do
     # Fill in the db with 5 categories

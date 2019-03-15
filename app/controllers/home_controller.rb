@@ -1,7 +1,10 @@
+# author nirina
+# HomeController Class
 class HomeController < ApplicationController
-    
-    layout 'application'
+  layout 'application'
 
-    def index 
-    end
+  # GET /
+  # Welcome Page
+  # @returns [ActionView::Renderer] view/home/index.html
+  def index; end
 end

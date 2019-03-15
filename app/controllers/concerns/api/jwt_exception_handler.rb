@@ -25,23 +25,23 @@ module API::JWTExceptionHandler
   private
 
   # JSON response with message; Status code 422 - unprocessable entity
-  # @param e [StandardError] the Exception to extract message from
+  # @param exception [StandardError] the Exception to extract message from
   # @return [ActionDispatch::Response] JSON with 422 status code
-  def four_twenty_two(e)
-    render json: { message: e.message }, status: :unprocessable_entity
+  def four_twenty_two(exception)
+    render json: { message: exception.message }, status: :unprocessable_entity
   end
 
   # JSON response with message; Status code 401 - Unauthorized
-  # @param e [StandardError] the Exception to extract message from
+  # @param exception [StandardError] the Exception to extract message from
   # @return [ActionDispatch::Response] JSON with 401 status code
-  def unauthorized_request(e)
-    render json: { message: e.message }, status: :unauthorized
+  def unauthorized_request(exception)
+    render json: { message: exception.message }, status: :unauthorized
   end
 
   # JSON response with message; Status code 400 - Bad Request
-  # @param e [StandardError] the Exception to extract message from
+  # @param exception [StandardError] the Exception to extract message from
   # @return [ActionDispatch::Response] JSON body with 400 status code
-  def bad_request(e)
-    render json: { message: e.message }, status: :bad_request
+  def bad_request(exception)
+    render json: { message: exception.message }, status: :bad_request
   end
 end

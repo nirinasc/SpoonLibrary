@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.configure do |config|
   # Specify a root directory where the generated Swagger files will be saved.
-  config.swagger_root = Rails.public_path.to_s + '/swagger_docs'
+  config.swagger_root = Rails.public_path.to_s + '/docs/swagger_docs'
 
   # Define one or more Swagger documents and global metadata for each.
   config.swagger_docs = {

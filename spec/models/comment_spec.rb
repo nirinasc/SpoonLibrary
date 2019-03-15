@@ -1,24 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  
   context 'Validation' do
-    subject(:categories) {
+    subject(:categories) do
       categories = []
       3.times { categories << FactoryBot.create(:category) }
       return categories
-    }
+    end
     subject(:comment) { FactoryBot.build(:comment, user: FactoryBot.create(:user), book: FactoryBot.create(:book, library: FactoryBot.create(:library), categories: categories)) }
 
     shared_examples 'unable to persist comment' do
-      it 'can not be persisted' do 
+      it 'can not be persisted' do
         comment.save
         expect(comment).to_not be_persisted
       end
     end
-    
+
     shared_examples 'able to persist comment' do
-      it 'can be persisted' do 
+      it 'can be persisted' do
         comment.save
         expect(comment).to be_persisted
       end
@@ -30,16 +29,16 @@ RSpec.describe Comment, type: :model do
 
     context 'when all attributes are good' do
       include_examples 'able to persist comment'
-    end 
+    end
 
     ## user attribute validation
     context 'when user is not associated' do
       before do
         comment.user = nil
         comment.valid?
-      end 
+      end
       it 'get a user attribute missing error' do
-        expect(comment.errors.details[:user]).to include({:error=>:blank})
+        expect(comment.errors.details[:user]).to include(error: :blank)
       end
       include_examples 'unable to persist comment'
     end
@@ -47,11 +46,11 @@ RSpec.describe Comment, type: :model do
     ## book attribute validation
     context 'when book is not associated' do
       before do
-      comment.book = nil
-      comment.valid?
-      end 
+        comment.book = nil
+        comment.valid?
+      end
       it 'get a book attribute missing error' do
-      expect(comment.errors.details[:book]).to include({:error=>:blank})
+        expect(comment.errors.details[:book]).to include(error: :blank)
       end
       include_examples 'unable to persist comment'
     end
@@ -59,11 +58,11 @@ RSpec.describe Comment, type: :model do
     ## content attribute validation
     context 'when content is not present' do
       before do
-      comment.content = nil
-      comment.valid?
-      end 
+        comment.content = nil
+        comment.valid?
+      end
       it 'get a content attribute missing error' do
-      expect(comment.errors.details[:content]).to include({:error=>:blank})
+        expect(comment.errors.details[:content]).to include(error: :blank)
       end
       include_examples 'unable to persist comment'
     end
@@ -73,12 +72,11 @@ RSpec.describe Comment, type: :model do
       before do
         comment.content = 'c'
         comment.valid?
-      end 
+      end
       it 'get a content attribute length error' do
-        expect(comment.errors.details[:content]).to include({:error => :too_short, :count=>2})
+        expect(comment.errors.details[:content]).to include(error: :too_short, count: 2)
       end
       include_examples 'unable to persist comment'
     end
-
   end
 end

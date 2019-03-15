@@ -20,30 +20,33 @@ RSpec.describe AuthorizeJWTRequest do
       end
     end
 
-    # returns error message when invalid request
+    # returns error when invalid request
     context 'when invalid request' do
+      # return inactive account error when user is not active
       context 'when account inactive' do
         it 'raises an non active account error' do
           expect { described_class.call(inactive_user_header) }
             .to raise_error(API::JWTExceptionHandler::InactiveAccount, 'Account not active')
-        end        
+        end
       end
 
+      # return missing token error when token is missing
       context 'when missing token' do
         it 'raises a MissingToken error' do
-          expect { described_class.call() }
+          expect { described_class.call }
             .to raise_error(API::JWTExceptionHandler::MissingToken, 'Missing token')
         end
       end
 
+      # return invalid token error when token is invalid
       context 'when invalid token' do
-
         it 'raises an InvalidToken error' do
           expect { described_class.call('Authorization' => token_generator(5)) }
             .to raise_error(API::JWTExceptionHandler::InvalidToken, /Invalid token/)
         end
       end
 
+      # return invalid token error when token is expired
       context 'when token is expired' do
         let(:header) { { 'Authorization' => expired_token_generator(active_user.id) } }
 
