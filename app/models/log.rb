@@ -6,7 +6,8 @@ class Log < ApplicationRecord
   has_one :return, class_name: 'Log', foreign_key: 'loan_id', dependent: :destroy
   belongs_to :loan, class_name: 'Log', optional: true
 
-  scope :unreturned, -> { where(returned: false) }
+  default_scope { includes(:book) }
+  scope :unreturned, -> { where(returned: [nil, false])}
   scope :over_due_dated, -> { where('due_date < ?', DateTime.now) }
 
   validates :classification, inclusion: { in: classifications.keys }
@@ -42,11 +43,11 @@ class Log < ApplicationRecord
   end
 
   def set_book_unavailable
-    book.update_attributes(available: false)
+    book.update_attributes(available: false, status: Book.statuses[:borrowed])
   end
 
   def set_book_available
-    book.update_attributes(available: true)
+    book.update_attributes(available: true, status: Book.statuses[:returned])
   end
 
   def to_s

@@ -1,0 +1,3 @@
+<p>Hi <%= @user.firstname %> <%= @user.lastname %></p>
+<p>As you requested, the book <%= @book.name %> will be available after <%= @book.last_loan.due_date.strftime("%B %d, %Y %H::%M") %></p>
+<p>Thanks, <br/> Spoon Consulting</p>

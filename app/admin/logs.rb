@@ -19,6 +19,20 @@ ActiveAdmin.register Log do
     filter :date
     filter :returned
 
+    controller do
+        def scoped_collection
+            if action_name == 'index'
+                if params[:scope] == 'books_return'
+                    super.includes(:user, loan: [:book])
+                else
+                    super.includes(:user)
+                end
+              else
+                super
+              end
+        end
+    end
+
     index do
         id_column
         column :user 

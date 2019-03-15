@@ -66,7 +66,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "Recent returns" do
-          table_for Log.book_return.includes(:user,:book).last(5) do |t|
+          table_for Log.book_return.includes(:user,:book, loan: [:book]).last(5) do |t|
             t.column :user
             t.column :book
             t.column 'Referenced Loan', :loan
@@ -78,5 +78,5 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-  end # content
+  end
 end

@@ -1,3 +1,4 @@
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users,
@@ -17,17 +18,19 @@ Rails.application.routes.draw do
     end
   end
   # devise_for :users, ActiveAdmin::Devise.config
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/notifications/signup-success', to: 'auth/notifications#success_signup', as: 'notifications_success_signup'
   get '/store(/library/:library)', to: 'store#index', as: 'store_index'
-  get '/store/loans', to: 'store#loans', as: 'store_loans'
-  get '/store/returns', to: 'store#returns', as: 'store_returns'
-  post '/store/:loan/returns', to: 'store#returning', as: 'store_return'
-  post '/store/:id/loan', to: 'store#loan', as: 'store_loan'
   get '/store/:id', to: 'store#show', as: 'store_show'
-  post '/store/:id/comment', to: 'store#comments_create', as: 'store_comments_create'
+  # book resource routes
+  post '/books/:id/loan', to: 'books#loan', as: 'book_loan_create'
+  post '/books/:id/comment', to: 'books#comments_create', as: 'book_comments_create'
+  get '/books/:id/availability', to: 'books#availability', as: 'book_availability'
+  # log resource routes
+  get '/logs/loans', to: 'logs#loans', as: 'loans'
+  get '/logs/returns', to: 'logs#returns', as: 'returns'
+  post '/logs/:loan/returns', to: 'logs#returning', as: 'return_create'
 
-  # rest api end points
+  # rest api endpoints
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiVersion.new('v1', true) do
       post '/auth/login', to: 'auth#login', as: 'auth_login'
@@ -45,6 +48,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # swagger ui routes
   mount SwaggerUiEngine::Engine, at: '/docs'
 
   root to: 'home#index'

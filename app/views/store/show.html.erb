@@ -31,7 +31,7 @@
                             <% if @book.comments.size > 0 %> 
                                 <div class="comments-lists">
                                     <h3>Comments</h3>   
-                                    <% @book.comments.each do |comment| %>
+                                    <% @book.comments.includes(:user).each do |comment| %>
                                         <div class="comment-item">
                                             <div class="thumbnail user-avatar">
                                                 <img class="img-responsive" src="<%= asset_url 'avatar_2x.png' %>" />
@@ -49,7 +49,7 @@
                                 </div>
                             <% end %>
                             <div class="comment-form">
-                                <%= form_for @comment, url: store_comments_create_path do |f| %>
+                                <%= form_for @comment, url: book_comments_create_path do |f| %>
                                     <%= f.text_area :content, class: ['form-control'], cols: 10, rows: 5, placeholder: 'Put you comment here' %>
                                     <%= f.submit 'Send', class: ['btn btn-default'] %>
                                 <% end %>
@@ -68,11 +68,15 @@
                     <div class="panel-body">
                       <% if @book.available %>
                         <small>To borrow this book, please click on the button bellow</small>
-                        <%= form_for @book, url: store_loan_path, method: 'POST' do |f| %>
+                        <%= form_for @book, url: book_loan_create_path, method: 'POST' do |f| %>
                             <%= f.submit 'Borrow this book', class: ['btn btn-default'] %>
                         <% end %>
                       <% else %>
                            This book is not available 
+                           <p>If you want more information about the book availability, <br/> please click on the button bellow</p>
+                           <%= form_for @book, url: book_availability_path, method: 'GET' do |f| %>
+                            <%= f.submit 'Send me more Info', class: ['btn btn-default'] %>
+                           <% end %>
                       <% end %>  
                     </div>
                 </div>

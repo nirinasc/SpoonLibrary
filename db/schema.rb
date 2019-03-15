@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_074822) do
+ActiveRecord::Schema.define(version: 2019_03_15_084642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,13 @@ ActiveRecord::Schema.define(version: 2019_03_01_074822) do
     t.datetime "updated_at", null: false
     t.integer "comments_count", default: 0
     t.string "slug"
+    t.integer "status", default: 0
     t.index ["author"], name: "index_books_on_author"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
     t.index ["library_id"], name: "index_books_on_library_id"
     t.index ["name"], name: "index_books_on_name"
     t.index ["slug"], name: "index_books_on_slug", unique: true
+    t.index ["status"], name: "index_books_on_status"
   end
 
   create_table "books_categories", id: false, force: :cascade do |t|

@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :username,
             presence: true,
             uniqueness: true,
-            format: { with: /\A[a-zA-Z0-9_]+\Z/, message: 'can only contain alphanumeric characters and dashes'}
+            format: { with: /\A[a-zA-Z0-9_]+\Z/, message: 'can only contain alphanumeric characters and dashes' }
   validates :firstname, presence: true, unless: -> { admin? }
   validates :lastname, presence: true, unless: -> { admin? }
   validates :country_code, inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }, allow_nil: true, allow_blank: true
@@ -50,5 +50,13 @@ class User < ApplicationRecord
   def set_default_params
     self.role ||= User.roles[:member]
     self.active ||= true
+  end
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
   end
 end

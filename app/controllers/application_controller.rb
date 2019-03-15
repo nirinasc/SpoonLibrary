@@ -27,4 +27,9 @@ class ApplicationController < ActionController::Base
   def set_layout
     devise_controller? ? 'auth' : 'store'
   end
+
+  # set the current user to User model
+  def set_current_user
+    User.current = current_user
+  end
 end
