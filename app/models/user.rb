@@ -49,7 +49,7 @@ class User < ApplicationRecord
   # @return [void]
   def set_default_params
     self.role ||= User.roles[:member]
-    self.active ||= true
+    self.active = active.nil? ? true : active
   end
 
   def self.current

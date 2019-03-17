@@ -41,7 +41,7 @@ RSpec.describe 'API::V1::Auth', type: :request, capture_examples: true do
       # Expect an unauthorized response when the user is not active
       response(401, description: 'unauthorized user') do
         # create a non active user
-        let!(:nonactive_user) { FactoryBot.create(:user, username: 'erick') }
+        let!(:nonactive_user) { FactoryBot.create(:user, username: 'erick', active: false) }
         # passing non active user username and password to :credentials params
         let(:credentials) do
           {

@@ -1,3 +1,4 @@
+# CanCanCan gem Ability generated class
 class Ability
   include CanCan::Ability
 

@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# User Model Tests Spec
 RSpec.describe User, type: :model do
   context 'Validation' do
     subject(:user) { FactoryBot.build(:user) }
@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
 
     context 'when email already exists' do
       before do
-        another_user = FactoryBot.create(:user, username: 'erick', email: user.email)
+        FactoryBot.create(:user, username: 'erick', email: user.email)
         user.valid?
       end
       it 'get email attribute uniqueness error' do
@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
 
     context 'when username already exists' do
       before do
-        another_user = FactoryBot.create(:user, username: user.username)
+        FactoryBot.create(:user, username: user.username)
         user.valid?
       end
       it 'get username attribute uniqueness error' do

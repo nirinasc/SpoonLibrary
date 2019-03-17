@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# Book Model Spec Tests
 RSpec.describe Book, type: :model do
   context 'Validation' do
     subject(:library) { FactoryBot.create(:library) }
@@ -81,7 +81,7 @@ RSpec.describe Book, type: :model do
 
     context 'when isbn value already exists' do
       before do
-        another_book = FactoryBot.create(:book, library: library, isbn: book.isbn, categories: categories)
+        FactoryBot.create(:book, library: library, isbn: book.isbn, categories: categories)
         book.valid?
       end
       it 'get isbn attribute uniqueness error' do

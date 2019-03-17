@@ -7,7 +7,7 @@ class AuthorizeJWTRequest
 
   # Class Initializer
   # @params [Hash, nil] the request headers
-  # @option headers [String] :Authorization The auth header 
+  # @option headers [String] :Authorization The auth header
   def initialize(headers = {})
     @headers = headers
   end

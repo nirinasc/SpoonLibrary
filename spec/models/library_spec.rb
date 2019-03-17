@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# Library Model Tests Spec
 RSpec.describe Library, type: :model do
   context 'Validation' do
     subject(:library) { FactoryBot.build(:library) }
