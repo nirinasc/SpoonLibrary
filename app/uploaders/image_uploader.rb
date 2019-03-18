@@ -1,9 +1,10 @@
+# @author nirina
+# Image Upload Handler Class
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   include Cloudinary::CarrierWave
-
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -13,7 +14,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   # def store_dir
   #  "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  #end
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -30,28 +31,28 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  #cloudinary processes
-  process :tags => ['cover']
+  # cloudinary processes
+  process tags: ['cover']
 
   def public_id
-    return model.name.parameterize + '-' + Time.now.to_i.to_s
+    model.name.parameterize + '-' + Time.now.to_i.to_s
   end
 
   # Create different versions of your uploaded files:
   version :thumbnail do
     resize_to_fit(100, 100)
-    cloudinary_transformation :quality => 90
+    cloudinary_transformation quality: 90
   end
 
   version :medium do
     resize_to_fit(200, 270)
-    cloudinary_transformation :quality => 90
+    cloudinary_transformation quality: 90
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-     %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:

@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# Log Model Tests Spec
 RSpec.describe Log, type: :model do
   context 'Validation' do
     subject(:user) { FactoryBot.create(:user) }

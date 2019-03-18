@@ -41,7 +41,7 @@ class JWTAuthenticateUser
       # Else Raise an API::JWTExceptionHandler::InactiveAccount Exception Message
       raise(API::JWTExceptionHandler::InactiveAccount, APIMessages.account_not_active)
     end
-    # Raise an (API::JWTExceptionHandler::AuthenticationError Exception Message 
+    # Raise an (API::JWTExceptionHandler::AuthenticationError Exception Message
     # if the password is not valid or there is no user found
     raise(API::JWTExceptionHandler::AuthenticationError, APIMessages.invalid_credentials)
   end

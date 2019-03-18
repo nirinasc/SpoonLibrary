@@ -6,7 +6,7 @@ RSpec.describe API::V1::ApplicationController, type: :controller do
   # create a valid user
   let!(:active_user) { FactoryBot.create(:user, active: true) }
   # create a non active user
-  let!(:nonactive_user) { FactoryBot.create(:user, username: 'erick') }
+  let!(:nonactive_user) { FactoryBot.create(:user, username: 'erick', active: false) }
   # create missing auth header
   let(:missing_headers) { { 'Authorization' => nil } }
   # create invalid auth header

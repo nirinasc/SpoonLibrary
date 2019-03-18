@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# Comment Model Tests Spec
 RSpec.describe Comment, type: :model do
   context 'Validation' do
     subject(:categories) do
@@ -7,7 +7,11 @@ RSpec.describe Comment, type: :model do
       3.times { categories << FactoryBot.create(:category) }
       return categories
     end
-    subject(:comment) { FactoryBot.build(:comment, user: FactoryBot.create(:user), book: FactoryBot.create(:book, library: FactoryBot.create(:library), categories: categories)) }
+    subject(:comment) do
+      FactoryBot.build(:comment,
+                       user: FactoryBot.create(:user),
+                       book: FactoryBot.create(:book, library: FactoryBot.create(:library), categories: categories))
+    end
 
     shared_examples 'unable to persist comment' do
       it 'can not be persisted' do

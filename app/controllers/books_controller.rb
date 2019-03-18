@@ -50,13 +50,13 @@ class BooksController < ApplicationController
   end
 
   # GET '/books/:id/availability'
-  # Get book (of id :id) availability info 
+  # Get book (of id :id) availability info
   # Redirect to /store/:id with success message
   # @return [ActionView::Renderer] default 404 page if the book does not exists
   def availability
     # retrieve the book object
     @book = Book.friendly.find(params[:id])
-    BookMailer.availability(book: @book, user: current_user).deliver_later
+    BookMailer.availability(book: @book, user: current_user).deliver_later unless @book.last_loan.nil?
     # redirect to book show page with a success message
     redirect_to store_show_path, notice: 'An email has been sent to you about the current state of this book'
   end

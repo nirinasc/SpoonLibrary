@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# Category Model Tests Spec
 RSpec.describe Category, type: :model do
   context 'Validation' do
     subject(:category) { FactoryBot.build(:category) }
