@@ -8,7 +8,7 @@
 
 # create admin user
 if User.count < 1
-    admin = User.create!([
+    User.create!([
         email: 'admin@spoonlibrary.com',
         username: 'spoonlibrarian',
         password: 'spoonL123',
