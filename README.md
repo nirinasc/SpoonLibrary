@@ -1,24 +1,52 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+To run this application, please follow theses steps:
 
-* Ruby version
+clone the repos
+```shell
+git clone https://github.com/nirinasc/SpoonLibrary.git spoonlibrary
+```
 
-* System dependencies
+Go to the project directory root
+```shell
+cd spoonlibrary
+```
 
-* Configuration
+Install gems dependency
+```shell
+bundle install
+```
 
-* Database creation
+Configure your database as follows:
 
-* Database initialization
+1. Go to your config folder
+```shell
+cd config
+```
+2. copy the file database.yml.example and rename it to database.yml
 
-* How to run the test suite
+Run Migrations and seeds files
+```shell
+rails db:migrate
+rails db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+To run the application:
+```shell
+rails s
+```
 
-* Deployment instructions
+## Tests
 
-* ...
+To run spec tests, type the followed command
+```shell
+bundle exec rspec
+```
+
+The api docs are located in http://localhost:3000/docs/swagger_docs/v1
+To generate them, tape the command bellow
+```shell
+bundle exec rake swagger
+```
