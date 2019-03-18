@@ -8,7 +8,7 @@
 
 # create admin user
 if User.count < 1
-    admin = User.create!([
+    User.create!([
         email: 'admin@spoonlibrary.com',
         username: 'spoonlibrarian',
         password: 'spoonL123',
@@ -17,4 +17,27 @@ if User.count < 1
         role: 1,
         active: true
     ])
+end
+
+# seed Libraries
+if Library.count < 1
+  # create 1 Library in  Mauritius
+  Library.create(name: 'Mauritius Library', country_code: 'MU', city: 'Rose Hill', address: 'Ebene Junction', phone: 	+33545451151)
+
+  # create another Library in  Madagascar
+  Library.create(name: 'Madagascar Library', country_code: 'MG', city: 'Antananarivo', address: '41141')
+end
+
+# seed Categories
+if Category.count < 1
+  30.times do
+    FactoryBot.create(:category)
+  end
+end
+
+# seed Books
+if Book.count < 1
+  100.times do |index|
+    FactoryBot.create(:book, library: (index % 2).zero? ? Library.first : Library.last, categories: Category.first(5))
+  end
 end

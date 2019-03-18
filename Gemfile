@@ -72,8 +72,6 @@ gem 'jwt'
 
 gem 'simple_command'
 
-gem 'figaro'
-
 gem 'active_model_serializers'
 
 gem 'rubocop', require: false
@@ -93,6 +91,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'dotenv-rails'
 end
 
 group :development do
